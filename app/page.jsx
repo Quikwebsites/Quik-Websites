@@ -1,10 +1,11 @@
-import Image from 'next/image';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <div className="">
-      <Image src="/logo.svg" alt="Logo" width={180} height={40} />
-      <h1 className="text-2xl">Qwick Websites</h1>
-    </div>
-  );
+  const user = true;
+
+  if (user) {
+    redirect('/my-websites');
+  } else {
+    redirect('/login');
+  }
 }

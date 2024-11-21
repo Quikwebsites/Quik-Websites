@@ -8,6 +8,55 @@ body {
 
 @layer base {
   :root {
+    --darkGreen: #16240d;
+    --lightGreen: #b6f4d0;
+    --midGreen: #739a88;
+    --textDark: #1e1e1e;
+    --background: #fcfffe;
+
+    --greenGradientColor1: #15d866;
+    --greenGradientColor2: #079844;
+
+    --success5: #f0fdf4;
+    --success50: #22c55e;
+    --destructive5: #fff1f2;
+    --destructive50: #f43f5e;
+    --warning5: #fffbeb;
+    --warning50: #f59e0b;
+    --brand5: #eef2ff;
+    --brand50: #4f46e5;
+
+    --gray5: #f8fafc;
+    --gray20: #e2e8f0;
+    --gray30: #cbd5e1;
+    --gray40: #94a3b8;
+    --gray60: #475569;
+    --gray80: #1e293b;
+    --gray200: #e3e8ef;
+    --gray300: #f4f7fe;
+    --gray500: #e0e5f2;
+    --gray600: #a3aed0;
+    --gray900: #111729;
+
     --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .dark {
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
