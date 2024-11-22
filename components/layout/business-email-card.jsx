@@ -29,7 +29,7 @@ export function BusinessEmailCard({ bulletPoints }) {
 
       <Button
         variant="lightGreen"
-        size="default"
+        size="full"
         className="mt-5 text-[16px]/[25px] font-[450]"
       >
         Upgrade
