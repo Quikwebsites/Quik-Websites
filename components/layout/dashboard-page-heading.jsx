@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function PageTitleHeading({ children, className }) {
+export default function DashboardPageHeading({ children, className }) {
   return (
     <h1
       className={cn(

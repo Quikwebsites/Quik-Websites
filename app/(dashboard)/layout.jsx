@@ -10,7 +10,8 @@ export default function DashboardLayout({ children }) {
 
       <main className="bg-background w-full px-11 pt-8">
         <div className="mb-2.5 flex items-center">
-          <SidebarTrigger />
+          <SidebarTrigger className="-ml-2" />
+
           <Separator
             orientation="vertical"
             className="ml-1 mr-[11px] h-4 w-px bg-gray30"
