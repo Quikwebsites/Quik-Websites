@@ -11,7 +11,7 @@ export default function AuthLayout({ children }) {
           variant="ghost"
           className="absolute bottom-0 left-3 md:left-36 md:px-2.5 md:py-1"
         >
-          <ChevronLeft /> Back to website
+          <ChevronLeft size={18} /> Back to website
         </Button>
 
         <Image

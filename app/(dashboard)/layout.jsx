@@ -8,7 +8,7 @@ export default function DashboardLayout({ children }) {
     <SidebarProvider>
       <AppSidebar />
 
-      <main className="bg-background w-full px-11 pt-8">
+      <main className="bg-background w-full px-6 py-4 md:px-11 md:py-8">
         <div className="mb-2.5 flex items-center">
           <SidebarTrigger className="-ml-2" />
 

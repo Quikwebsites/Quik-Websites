@@ -47,7 +47,7 @@ const bulletPoints = [
 
 export default function AppSidebar() {
   return (
-    <Sidebar className="overflow-auto rounded-b-[10px] border-none shadow-[0px_0px_10px_0px_rgba(115,154,136,0.15)]">
+    <Sidebar className="shadow-10px overflow-auto rounded-b-[10px] border-none">
       <SidebarHeader className="mx-5 items-center border-b border-[#B7DFCC] pb-[54px] pt-[44px]">
         <Image
           priority

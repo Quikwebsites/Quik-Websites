@@ -1,24 +1,7 @@
 import DashboardPageHeading from "@/components/layout/dashboard-page-heading";
-import WebsiteCard from "./website-card";
-import AddNewWebsite from "./add-new-website";
-
-const websitesData = [
-  {
-    name: "Website name",
-    template: "Template Name",
-    image: "/website-template-1.jpg",
-  },
-  {
-    name: "Website name",
-    template: "Template Name",
-    image: "/website-template-2.jpg",
-  },
-  {
-    name: "Website name",
-    template: "Template Name",
-    image: "/website-template-3.jpg",
-  },
-];
+import WebsiteCard from "./WebsiteCard";
+import AddNewWebsite from "./AddNewWebsite";
+import { websitesData } from "./websites-data";
 
 export const metadata = {
   title: "My Websites",
@@ -26,12 +9,12 @@ export const metadata = {
 
 export default function MyWebsitesPage() {
   return (
-    <div className="pb-10">
+    <div className="max-w-7xl pb-10">
       <DashboardPageHeading>My Websites</DashboardPageHeading>
 
       <div className="flex flex-wrap gap-[14px] pt-8">
         {websitesData.map((website) => (
-          <WebsiteCard data={website} />
+          <WebsiteCard key={website.name} data={website} />
         ))}
 
         <AddNewWebsite />

@@ -31,6 +31,7 @@ module.exports = {
         brand50: "var(--brand50)",
 
         gray5: "var(--gray5)",
+        gray10: "var(--gray10)",
         gray20: "var(--gray20)",
         gray30: "var(--gray30)",
         gray40: "var(--gray40)",
@@ -57,6 +58,14 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        "10px": "0px 0px 10px 0px rgba(115, 154, 136, 0.15)",
+        "4px-i": "0px 0px 4px 0px rgba(0, 0, 0, 0.10) inset",
+      },
+      backgroundImage: {
+        "gradient-green":
+          "radial-gradient(var(--greenGradientColor1), var(--greenGradientColor2))",
       },
     },
   },
