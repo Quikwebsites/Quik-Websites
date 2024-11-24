@@ -33,7 +33,7 @@ export function DescriptionCard() {
             size={18}
             strokeWidth={3}
             color="white"
-            className="sdbg-[radial-gradient(circle,_#1e3a8a,_#3b82f6)] bg-gradient-green rounded-full p-0.5"
+            className="bg-gradient-green2 rounded-full p-0.5"
           />
           <p className="my-auto text-base font-normal text-black">Active</p>
         </div>

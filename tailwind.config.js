@@ -64,7 +64,9 @@ module.exports = {
         "4px-i": "0px 0px 4px 0px rgba(0, 0, 0, 0.10) inset",
       },
       backgroundImage: {
-        "gradient-green":
+        "gradient-green1":
+          "radial-gradient(var(--greenGradientColor2), var(--greenGradientColor1))",
+        "gradient-green2":
           "radial-gradient(var(--greenGradientColor1), var(--greenGradientColor2))",
       },
     },

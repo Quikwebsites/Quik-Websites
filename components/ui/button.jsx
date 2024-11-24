@@ -17,6 +17,8 @@ const buttonVariants = cva(
           "border border-gray30 bg-white text-gray60 hover:bg-gray5 hover:text-gray80 rounded-full",
         secondary:
           "bg-[radial-gradient(204.89%_123.2%_at_100%_123.2%,#000_12.94%,#283830_55.5%,#000_100%)] hover:bg-darkGreen text-center text-xs font-normal leading-6 tracking-tight text-white",
+        gradient:
+          "bg-gradient-green1 rounded-full px-4 py-2.5 text-sm font-bold tracking-[-0.084px] text-white",
         ghost:
           "hover:bg-gray5 hover:text-black text-darkGreen text-sm leading-7 tracking-[-0.28px] font-normal",
         link: "text-darkGreen underline underline-offset-2 hover:underline dark:text-gray20",
@@ -25,7 +27,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "w-max",
-        sm: "h-9 rounded-md px-3",
+        sm: "px-4 py-2.5 rounded-full",
         md: "px-7 py-1 rounded-[70px]",
         lg: "h-11 rounded-md px-8",
         full: "w-full",
