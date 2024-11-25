@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DashboardPageHeading from "@/components/layout/dashboard-page-heading";
 import AccountTabContent from "./AccountTabContent";
+import PaymentsTabContent from "./(payments-tab)/PaymentsTabContent";
 
 export const metadata = {
   title: "Profile",
@@ -12,7 +13,7 @@ export default function ProfilePage() {
       <DashboardPageHeading>Account Settings</DashboardPageHeading>
 
       <div className="flex w-full flex-col gap-11 pt-6 md:flex-row">
-        <Tabs defaultValue="account" className="w-full">
+        <Tabs defaultValue="payments" className="w-full">
           <TabsList>
             <TabsTrigger value="payments">Payments</TabsTrigger>
             <TabsTrigger value="subscription">Subscription</TabsTrigger>
@@ -23,7 +24,10 @@ export default function ProfilePage() {
             <AccountTabContent />
           </TabsContent>
 
-          <TabsContent value="payments">Payments</TabsContent>
+          <TabsContent value="payments">
+            <PaymentsTabContent />
+          </TabsContent>
+
           <TabsContent value="subscription">Subscription</TabsContent>
         </Tabs>
       </div>
