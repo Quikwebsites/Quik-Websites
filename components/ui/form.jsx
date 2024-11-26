@@ -43,7 +43,7 @@ const useFormField = () => {
 
 const FormItemContext = React.createContext({});
 
-const FormItem = React.forwardRef(({ className, ...props }, ref) => {
+const FormItem = React.forwardRef(({ className, variant, ...props }, ref) => {
   const id = React.useId();
 
   return (
@@ -51,7 +51,8 @@ const FormItem = React.forwardRef(({ className, ...props }, ref) => {
       <div
         ref={ref}
         className={cn(
-          "flex items-center border-b border-gray20 py-6",
+          "relative flex items-center border-b border-gray20 py-6",
+          variant === "auth" && "flex-col items-start gap-2 border-none py-2",
           className,
         )}
         {...props}
@@ -61,7 +62,7 @@ const FormItem = React.forwardRef(({ className, ...props }, ref) => {
 });
 FormItem.displayName = "FormItem";
 
-const FormLabel = React.forwardRef(({ className, ...props }, ref) => {
+const FormLabel = React.forwardRef(({ className, variant, ...props }, ref) => {
   const { error, formItemId } = useFormField();
 
   return (
@@ -69,6 +70,7 @@ const FormLabel = React.forwardRef(({ className, ...props }, ref) => {
       ref={ref}
       className={cn(
         "w-[260px] text-base font-bold tracking-[-0.112px] text-gray80",
+        variant === "auth" && "text-sm font-normal",
         error && "text-red-500 dark:text-red-900",
         className,
       )}
@@ -114,7 +116,7 @@ const FormDescription = React.forwardRef(({ className, ...props }, ref) => {
 FormDescription.displayName = "FormDescription";
 
 const FormMessage = React.forwardRef(
-  ({ className, children, ...props }, ref) => {
+  ({ className, variant, children, ...props }, ref) => {
     const { error, formMessageId } = useFormField();
     const body = error ? String(error?.message) : children;
 
@@ -128,6 +130,7 @@ const FormMessage = React.forwardRef(
         id={formMessageId}
         className={cn(
           "ml-auto text-sm font-medium text-red-500 dark:text-red-900",
+          variant === "auth" && "ml-0 font-normal",
           className,
         )}
         {...props}

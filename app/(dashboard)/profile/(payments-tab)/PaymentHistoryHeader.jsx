@@ -62,7 +62,11 @@ export default function PaymentHistoryHeader({ table }) {
         {/* Filter */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="default" size="sm" className="ml-auto">
+            <Button
+              variant="default"
+              size="sm"
+              className="ml-auto text-base font-[450]"
+            >
               <ListFilter size={20} /> Filter
             </Button>
           </DropdownMenuTrigger>

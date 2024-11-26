@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function AuthLayout({ children }) {
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <div className="bg-background flex min-h-screen flex-col justify-between">
       <div className="relative flex justify-center pt-6 md:pt-12">
         <Button
           variant="ghost"
@@ -24,7 +24,7 @@ export default function AuthLayout({ children }) {
         />
       </div>
 
-      <main className="flex h-full w-full flex-col items-center justify-center">
+      <main className="flex h-full w-full flex-col items-center justify-center p-4">
         {children}
       </main>
 
