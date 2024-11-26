@@ -22,8 +22,6 @@ export default function ConfirmationBox({ title, description, navigateTo }) {
     return () => clearInterval(interval);
   }, [seconds]);
 
-  console.log(seconds);
-
   return (
     <div className="shadow-10px flex w-full flex-col items-center justify-center rounded-2xl bg-white p-6 px-6 py-12 md:w-[360px]">
       <Check

@@ -37,7 +37,7 @@ export default function PaymentMethod() {
         className="flex flex-col gap-3 md:flex-row"
       >
         {paymentsMethods.map((method) => (
-          <Method data={method} />
+          <Method key={method.number + method.type} data={method} />
         ))}
 
         <NewMethod />

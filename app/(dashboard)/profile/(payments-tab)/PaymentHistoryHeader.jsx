@@ -28,7 +28,7 @@ export default function PaymentHistoryHeader({ table }) {
     } else {
       table.resetColumnFilters(table.getColumn("date"));
     }
-  }, [date]);
+  }, [date, table]);
 
   console.log(date);
   return (
