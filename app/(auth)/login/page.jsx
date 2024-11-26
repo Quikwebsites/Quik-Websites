@@ -27,7 +27,7 @@ const formSchema = z.object({
     .min(8, { message: "Password must be at least 8 characters" }),
 });
 
-export default function Login() {
+export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(true);
 
@@ -106,7 +106,7 @@ export default function Login() {
               onCheckedChange={setKeepLoggedIn}
             />
 
-            <Link href="#" className="text-sm text-midGreen">
+            <Link href="/reset-password" className="text-sm text-midGreen">
               Forgot Password?
             </Link>
           </div>
