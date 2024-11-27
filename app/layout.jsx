@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const futuraPT = localFont({
   src: [
@@ -41,7 +42,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${futuraPT.variable} antialiased`}>{children}</body>
+      <body className={`${futuraPT.variable} antialiased`}>
+        {children}
+
+        <Toaster />
+      </body>
     </html>
   );
 }

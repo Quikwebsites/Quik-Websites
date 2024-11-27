@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { auth } from "@/lib/firebase/config";
+import { useToast } from "@/hooks/use-toast";
 import {
   Form,
   FormControl,
@@ -32,6 +33,8 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(true);
 
+  const { toast } = useToast();
+
   const form = useForm({
     mode: "onSubmit",
     resolver: zodResolver(formSchema),
@@ -51,6 +54,13 @@ export default function LoginPage() {
       console.log(user);
     } catch (error) {
       console.error(error);
+      toast({
+        title: error.message.includes("auth/invalid-credential")
+          ? "Invalid credentials"
+          : error.message,
+        description: "Check your credentials and try again",
+        variant: "destructive",
+      });
     }
   };
 
