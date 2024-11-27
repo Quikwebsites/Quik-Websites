@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Eye, EyeOff } from "lucide-react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import AuthFormCard from "@/components/layout/auth-form-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { auth } from "@/lib/firebase/config";
 import {
   Form,
   FormControl,
@@ -32,6 +33,7 @@ export default function LoginPage() {
   const [keepLoggedIn, setKeepLoggedIn] = useState(true);
 
   const form = useForm({
+    mode: "onSubmit",
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
@@ -39,9 +41,17 @@ export default function LoginPage() {
     },
   });
 
-  const onSubmit = (data) => {
-    // Handle form submission
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      console.log(user);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -111,8 +121,17 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <Button type="submit" variant="default" size="full">
-            Sign In
+          <Button
+            disabled={form.formState.isSubmitting}
+            type="submit"
+            variant="default"
+            size="full"
+          >
+            {form.formState.isSubmitting ? (
+              <LoaderCircle size={18} className="animate-spin" />
+            ) : (
+              "Sign In"
+            )}
           </Button>
 
           <Link
