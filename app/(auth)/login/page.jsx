@@ -21,6 +21,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useAuthStore } from "@/lib/store";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -30,10 +32,12 @@ const formSchema = z.object({
 });
 
 export default function LoginPage() {
+  const { setCurrentUser } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [keepLoggedIn, setKeepLoggedIn] = useState(true);
 
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm({
     mode: "onSubmit",
@@ -52,7 +56,8 @@ export default function LoginPage() {
         data.password,
       );
       const user = userCredential.user;
-      console.log(user);
+      setCurrentUser(user);
+      router.push("/");
     } catch (error) {
       console.error(error);
       toast({

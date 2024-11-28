@@ -1,11 +1,21 @@
-import { redirect } from 'next/navigation';
+"use client";
+
+import { useEffect } from "react";
+import { redirect } from "next/navigation";
+import { useAuthStore } from "@/lib/store";
 
 export default function Home() {
-  const user = true;
+  const { currentUser, loadingState } = useAuthStore();
 
-  if (user) {
-    redirect('/my-websites');
-  } else {
-    redirect('/login');
+  useEffect(() => {
+    useAuthStore.persist.rehydrate();
+  }, []);
+
+  if (!loadingState) {
+    if (currentUser) {
+      redirect("/my-websites");
+    } else {
+      redirect("/login");
+    }
   }
 }
