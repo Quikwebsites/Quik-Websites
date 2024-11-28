@@ -4,7 +4,7 @@ import NewPasswordForm from "./NewPasswordForm";
 import ConfirmationBox from "@/components/layout/confirmation-box";
 
 export default async function ResetPasswordPage({ searchParams }) {
-  const { phase } = await searchParams;
+  const { phase, oobCode } = await searchParams;
 
   return (
     <>
@@ -24,7 +24,7 @@ export default async function ResetPasswordPage({ searchParams }) {
           }
         >
           {phase === "new-password" ? (
-            <NewPasswordForm />
+            <NewPasswordForm oobCode={oobCode} />
           ) : (
             <RequestResetCodeForm />
           )}

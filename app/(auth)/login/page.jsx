@@ -46,11 +46,12 @@ export default function LoginPage() {
 
   const onSubmit = async (data) => {
     try {
-      const user = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         data.email,
         data.password,
       );
+      const user = userCredential.user;
       console.log(user);
     } catch (error) {
       console.error(error);

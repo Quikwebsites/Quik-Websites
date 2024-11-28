@@ -5,8 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { z } from "zod";
 
+import { useToast } from "@/hooks/use-toast";
+import { LoaderCircle } from "lucide-react";
+import { auth } from "@/lib/firebase/config";
 import {
   Form,
   FormControl,
@@ -15,7 +19,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -29,12 +32,26 @@ export default function RequestResetCodeForm() {
     },
   });
 
-  const router = useRouter();
+  const { toast } = useToast();
 
-  const onSubmit = (data) => {
-    // Handle form submission
-    console.log(data);
-    router.push("/reset-password?phase=new-password");
+  const onSubmit = async (data) => {
+    try {
+      await sendPasswordResetEmail(auth, data.email);
+      console.log("resetPassword");
+      toast({
+        title: "Verification email sent",
+        description:
+          "Check your email for the password reset link. If you don't get the email, please try again with valid credentials.",
+        variant: "success",
+      });
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: error.message,
+        description: "Check your credentials and try again",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -59,8 +76,18 @@ export default function RequestResetCodeForm() {
           )}
         />
 
-        <Button type="submit" variant="default" size="full" className="mt-4">
-          Request code
+        <Button
+          disabled={form.formState.isSubmitting}
+          type="submit"
+          variant="default"
+          size="full"
+          className="mt-4"
+        >
+          {form.formState.isSubmitting ? (
+            <LoaderCircle size={18} className="animate-spin" />
+          ) : (
+            "Request code"
+          )}
         </Button>
 
         <Link

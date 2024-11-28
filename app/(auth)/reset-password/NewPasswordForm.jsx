@@ -5,7 +5,12 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
+import { confirmPasswordReset } from "firebase/auth";
 
+import { LoaderCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { auth } from "@/lib/firebase/config";
 import {
   Form,
   FormControl,
@@ -14,7 +19,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -35,7 +39,7 @@ const formSchema = z
     }
   });
 
-export default function NewPasswordForm() {
+export default function NewPasswordForm({ oobCode }) {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,11 +49,20 @@ export default function NewPasswordForm() {
   });
 
   const router = useRouter();
+  const { toast } = useToast();
 
-  const onSubmit = (data) => {
-    // Handle form submission
-    console.log(data);
-    router.push("/reset-password?phase=reset-successful");
+  const onSubmit = async (data) => {
+    try {
+      await confirmPasswordReset(auth, oobCode, data.newPassword);
+      router.push("/reset-password?phase=reset-successful");
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: error.message,
+        description: "Please try again",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -93,8 +106,18 @@ export default function NewPasswordForm() {
           )}
         />
 
-        <Button type="submit" variant="default" size="full" className="mt-4">
-          Save Password & Login
+        <Button
+          disabled={form.formState.isSubmitting}
+          type="submit"
+          variant="default"
+          size="full"
+          className="mt-4"
+        >
+          {form.formState.isSubmitting ? (
+            <LoaderCircle size={18} className="animate-spin" />
+          ) : (
+            "Save Password & Login"
+          )}
         </Button>
       </form>
     </Form>
