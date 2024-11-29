@@ -30,7 +30,6 @@ export default function PaymentHistoryHeader({ table }) {
     }
   }, [date, table]);
 
-  console.log(date);
   return (
     <div className="flex w-full justify-between">
       <p className="mb-2 text-lg font-bold tracking-tight text-gray80">

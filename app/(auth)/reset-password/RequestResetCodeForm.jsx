@@ -37,7 +37,6 @@ export default function RequestResetCodeForm() {
   const onSubmit = async (data) => {
     try {
       await sendPasswordResetEmail(auth, data.email);
-      console.log("resetPassword");
       toast({
         title: "Verification email sent",
         description:
