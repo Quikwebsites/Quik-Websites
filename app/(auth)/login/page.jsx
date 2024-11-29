@@ -132,7 +132,10 @@ export default function LoginPage() {
               onCheckedChange={setKeepLoggedIn}
             />
 
-            <Link href="/reset-password" className="text-sm text-midGreen">
+            <Link
+              href="/auth-action?mode=resetPasswordRequest"
+              className="text-sm text-midGreen"
+            >
               Forgot Password?
             </Link>
           </div>

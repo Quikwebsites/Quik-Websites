@@ -1,14 +1,14 @@
 "use client";
 
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { sendEmailVerification } from "firebase/auth";
+import { z } from "zod";
+
+import { LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useRouter } from "next/navigation";
-import { confirmPasswordReset } from "firebase/auth";
-
-import { LoaderCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { auth } from "@/lib/firebase/config";
 import {
@@ -19,47 +19,37 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useAuthStore } from "@/lib/store";
 
-const formSchema = z
-  .object({
-    newPassword: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters" }),
-    confirmPassword: z
-      .string()
-      .min(8, { message: "Password must be at least 8 characters" }),
-  })
-  .superRefine(({ newPassword, confirmPassword }, ctx) => {
-    if (newPassword !== confirmPassword) {
-      ctx.addIssue({
-        code: "custom",
-        message: "The passwords did not match",
-        path: ["confirmPassword"],
-      });
-    }
-  });
+const formSchema = z.object({
+  // currentEmail: z.string().email({ message: "Invalid email address" }),
+  newEmail: z.string().email({ message: "Invalid email address" }),
+});
 
-export default function NewPasswordForm({ oobCode }) {
+export default function GetNewEmailVerification() {
+  const { currentUser } = useAuthStore();
+
+  // console.log(currentUser);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      newPassword: "",
-      confirmPassword: "",
+      currentEmail: currentUser.email,
+      newEmail: "",
     },
   });
 
-  const router = useRouter();
   const { toast } = useToast();
 
   const onSubmit = async (data) => {
     try {
-      await confirmPasswordReset(auth, oobCode, data.newPassword);
-      router.push("/reset-password?phase=reset-successful");
+      console.log(data);
+      await sendEmailVerification(auth.currentUser);
     } catch (error) {
       console.error(error);
       toast({
         title: error.message,
-        description: "Please try again",
+        description: "Check your credentials and try again",
         variant: "destructive",
       });
     }
@@ -69,14 +59,15 @@ export default function NewPasswordForm({ oobCode }) {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="">
         <FormField
+          disabled
           control={form.control}
-          name="newPassword"
+          name="currentEmail"
           render={({ field }) => (
             <FormItem variant="auth">
-              <FormLabel variant="auth">New password</FormLabel>
+              <FormLabel variant="auth">Current email</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Min 8 characters"
+                  placeholder="email@example.com"
                   variant="auth"
                   {...field}
                 />
@@ -89,13 +80,13 @@ export default function NewPasswordForm({ oobCode }) {
 
         <FormField
           control={form.control}
-          name="confirmPassword"
+          name="newEmail"
           render={({ field }) => (
             <FormItem variant="auth">
-              <FormLabel variant="auth">Confirm password</FormLabel>
+              <FormLabel variant="auth">New Email*</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Confirm new password"
+                  placeholder="email@example.com"
                   variant="auth"
                   {...field}
                 />
@@ -116,9 +107,16 @@ export default function NewPasswordForm({ oobCode }) {
           {form.formState.isSubmitting ? (
             <LoaderCircle size={18} className="animate-spin" />
           ) : (
-            "Save Password & Login"
+            "Get verification"
           )}
         </Button>
+
+        <Link
+          href="/"
+          className="mt-6 block w-full text-center text-sm text-darkGreen underline"
+        >
+          Cancel
+        </Link>
       </form>
     </Form>
   );
