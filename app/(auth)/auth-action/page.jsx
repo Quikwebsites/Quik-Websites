@@ -4,7 +4,7 @@ import NewPasswordForm from "./NewPasswordForm";
 import ConfirmationBox from "@/components/layout/confirmation-box";
 import { redirect } from "next/navigation";
 import GetNewEmailVerification from "./GetNewEmailVerification";
-import Link from "next/link";
+import VerifyEmail from "./VerifyEmail";
 
 export default async function ResetPasswordPage({ searchParams }) {
   const { mode, oobCode } = await searchParams;
@@ -19,8 +19,6 @@ export default async function ResetPasswordPage({ searchParams }) {
             ? "Your password has been reset"
             : "New mail confirmed"
         }
-        description="Redirecting you to login in:"
-        navigateTo="/login"
       />
     );
   }
@@ -47,26 +45,13 @@ export default async function ResetPasswordPage({ searchParams }) {
 
   // Email change
   if (mode === "changeEmailRequest") {
-    return (
-      <>
-        <AuthFormCard
-          title="Change your email"
-          description="Verify your current email address to proceed"
-        >
-          <GetNewEmailVerification />
-        </AuthFormCard>
-
-        <p className="mt-8 text-xs font-normal text-gray60">
-          Dont have access to your current email address?{" "}
-          <Link href={"#"} className="underline">
-            Contact Us
-          </Link>
-        </p>
-      </>
-    );
+    return <GetNewEmailVerification />;
   }
 
-  // verifyEmail
+  // Verify old and new email change
+  if (mode === "verifyEmail" || mode === "verifyAndChangeEmail") {
+    return <VerifyEmail mode={mode} oobCode={oobCode} />;
+  }
 
   return null;
 }

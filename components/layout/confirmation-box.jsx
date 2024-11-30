@@ -4,7 +4,11 @@ import { Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function ConfirmationBox({ title, description, navigateTo }) {
+export default function ConfirmationBox({
+  title,
+  description = "Redirecting you to login in:",
+  navigateTo = "/login",
+}) {
   const [seconds, setSeconds] = useState(10);
 
   const router = useRouter();
