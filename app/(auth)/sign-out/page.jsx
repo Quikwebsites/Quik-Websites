@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { useAuthStore } from "@/lib/store";
 import LoadingSpinner from "@/components/layout/loading-spinner";
 
-export default function page() {
+export default function SignOutPage() {
   const { resetCurrentUser } = useAuthStore();
 
   useEffect(() => {
