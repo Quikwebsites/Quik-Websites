@@ -19,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useAuthStore } from "@/lib/store";
 
 const formSchema = z
   .object({
@@ -40,6 +41,8 @@ const formSchema = z
   });
 
 export default function NewPasswordForm({ oobCode }) {
+  const { resetCurrentUser } = useAuthStore();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,6 +57,7 @@ export default function NewPasswordForm({ oobCode }) {
   const onSubmit = async (data) => {
     try {
       await confirmPasswordReset(auth, oobCode, data.newPassword);
+      resetCurrentUser();
       router.push("/auth-action?mode=resetPasswordSuccess");
     } catch (error) {
       console.error(error);
