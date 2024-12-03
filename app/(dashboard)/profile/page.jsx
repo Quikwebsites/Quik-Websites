@@ -16,7 +16,7 @@ export default function ProfilePage() {
         <Tabs defaultValue="payments" className="w-full">
           <TabsList>
             <TabsTrigger value="payments">Payments</TabsTrigger>
-            <TabsTrigger value="subscription">Subscription</TabsTrigger>
+            {/* <TabsTrigger value="subscription">Subscription</TabsTrigger> */}
             <TabsTrigger value="account">Account</TabsTrigger>
           </TabsList>
 
@@ -28,7 +28,7 @@ export default function ProfilePage() {
             <PaymentsTabContent />
           </TabsContent>
 
-          <TabsContent value="subscription">Subscription</TabsContent>
+          {/* <TabsContent value="subscription">Subscription</TabsContent> */}
         </Tabs>
       </div>
     </div>

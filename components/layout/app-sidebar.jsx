@@ -15,16 +15,16 @@ const navigationItems = [
     title: "My Websites",
     pathname: "/my-websites",
   },
-  {
-    icon: "CartIcon",
-    title: "My Websites",
-    pathname: "/my-websites2",
-  },
-  {
-    icon: "DomainsIcon",
-    title: "Domains",
-    pathname: "/domains",
-  },
+  // {
+  //   icon: "CartIcon",
+  //   title: "My Websites",
+  //   pathname: "/my-websites2",
+  // },
+  // {
+  //   icon: "DomainsIcon",
+  //   title: "Domains",
+  //   pathname: "/domains",
+  // },
   {
     icon: "ProfileIcon",
     title: "Profile",

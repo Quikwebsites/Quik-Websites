@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, MoveRight } from "lucide-react";
 import ActionsButtons from "./ActionsButtons";
 
 export function DescriptionCard() {
@@ -25,17 +25,26 @@ export function DescriptionCard() {
         <p className="text-base font-[450] leading-none tracking-tight text-black">
           Domain
         </p>
-        <div className="bg-gray10 mt-3 flex w-full items-center gap-2.5 rounded-lg px-5 py-3">
-          <p className="my-auto text-base font-[450] leading-none tracking-tight text-textDark">
-            Domain Name
-          </p>
-          <Check
-            size={18}
-            strokeWidth={3}
-            color="white"
-            className="bg-gradient-green2 rounded-full p-0.5"
-          />
-          <p className="my-auto text-base font-normal text-black">Active</p>
+        <div className="bg-gray10 mt-3 flex w-full justify-between rounded-lg px-5 py-2">
+          <div className="flex items-center gap-2.5">
+            <p className="my-auto text-base font-[450] leading-none tracking-tight text-textDark">
+              Domain Name
+            </p>
+            <Check
+              size={18}
+              strokeWidth={3}
+              color="white"
+              className="bg-gradient-green2 rounded-full p-0.5"
+            />
+            <p className="my-auto text-base font-normal text-black">Active</p>
+          </div>
+
+          <Button
+            variant="secondary"
+            className="h-max rounded-[10px] px-5 py-1 font-[450]"
+          >
+            Visit my site <MoveRight size={18} strokeWidth={1.5} />
+          </Button>
         </div>
       </div>
 
