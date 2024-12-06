@@ -3,28 +3,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dot, PlusSquare } from "lucide-react";
 import Image from "next/image";
 
-const paymentsMethods = [
-  {
-    type: "Visa",
-    number: "**** 3304",
-    icon: "/icons/visa.svg",
-    isActive: true,
-  },
-  {
-    type: "Mastercard",
-    number: "**** 4029",
-    icon: "/icons/mastercard.svg",
-    isActive: false,
-  },
-];
+export default function PaymentMethod({ paymentMethodsData }) {
+  const { paymentMethods, defaultPaymentMethodId } = paymentMethodsData;
 
-const generateID = (idFrom) => {
-  return idFrom.toLowerCase().split(" ").join("-");
-};
-
-export default function PaymentMethod() {
   const activeMethod =
-    paymentsMethods.find((method) => method.isActive) || paymentsMethods[0];
+    paymentMethods.find((method) => method.id === defaultPaymentMethodId) ||
+    paymentMethods[0];
 
   return (
     <div>
@@ -33,11 +17,15 @@ export default function PaymentMethod() {
       </p>
 
       <RadioGroup
-        defaultValue={generateID(activeMethod.type + activeMethod.number)}
+        defaultValue={activeMethod.id}
         className="flex flex-col gap-3 md:flex-row"
       >
-        {paymentsMethods.map((method) => (
-          <Method key={method.number + method.type} data={method} />
+        {paymentMethods.map((method) => (
+          <Method
+            key={method.id}
+            data={method}
+            isActive={activeMethod.id === method.id}
+          />
         ))}
 
         <NewMethod />
@@ -55,27 +43,22 @@ function NewMethod() {
   );
 }
 
-function Method({ data }) {
-  const { number, type, icon, isActive } = data;
-
+function Method({ data, isActive }) {
   return (
     <div>
       <Label
-        htmlFor={generateID(type + number)}
+        htmlFor={data.id}
         className="flex w-[260px] cursor-pointer items-center justify-between rounded-xl border-2 border-gray200 px-4 pb-2 pt-3 text-base font-normal [&:has(button[aria-checked=true])]:border-greenGradientColor2"
       >
         <div className="space-y-2">
           <div className="flex gap-3 pt-1">
-            <RadioGroupItem
-              value={generateID(type + number)}
-              id={generateID(type + number)}
-            />
+            <RadioGroupItem value={data.id} id={data.id} />
 
             <div className="-mt-1">
-              <p className="text-gray900">{number}</p>
+              <p className="text-gray900">**** {data.card.last4}</p>
 
-              <div className="flex text-[#677489]">
-                <p>{type}</p>
+              <div className="flex capitalize text-[#677489]">
+                <p>{data.card.display_brand}</p>
                 <Dot color="#677489" />
                 <p>Edit</p>
               </div>
@@ -84,8 +67,12 @@ function Method({ data }) {
         </div>
 
         <Image
-          src={icon}
-          alt={type + "logo"}
+          src={
+            data.card.display_brand
+              ? `/icons/${data.card.display_brand}.svg`
+              : "/icons/ion_card-outline.svg"
+          }
+          alt={data.card.display_brand + "logo"}
           width={40}
           height={40}
           className="w-[40px] object-contain object-center"
