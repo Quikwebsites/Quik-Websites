@@ -12,19 +12,9 @@ export async function GET(request) {
   }
 
   try {
-    const paymentMethods = await stripe.customers.listPaymentMethods(
-      customerId,
-      { type: "card" },
-    );
+    const charges = await stripe.charges.list({ customer: customerId });
 
-    const customer = await stripe.customers.retrieve(customerId);
-    const defaultPaymentMethodId =
-      customer.invoice_settings.default_payment_method;
-
-    return NextResponse.json({
-      paymentMethods: paymentMethods.data,
-      defaultPaymentMethodId,
-    });
+    return NextResponse.json(charges.data);
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

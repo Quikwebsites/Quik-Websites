@@ -71,18 +71,18 @@ export const paymentHistoryColumns = [
   },
 
   {
-    accessorKey: "category",
-    header: "Category",
+    accessorKey: "status",
+    header: "Status",
     cell: ({ row }) => {
-      const rowValue = row.getValue("category");
+      const rowValue = row.getValue("status");
       const variant =
-        rowValue === "accepted"
+        rowValue === "succeeded"
           ? "success"
-          : rowValue === "rejected"
+          : rowValue === "failed"
             ? "destructive"
             : "warning";
       return (
-        <div className="">
+        <div className="-ml-2">
           <Badge variant={variant}>{rowValue}</Badge>
         </div>
       );
@@ -104,7 +104,7 @@ export const paymentHistoryColumns = [
             className="w-[36px] object-contain object-center"
           />
           <div className="s">
-            <p className="font-medium">
+            <p className="font-medium capitalize">
               <span>{account?.type} </span>
               <span>{account?.number}</span>
             </p>

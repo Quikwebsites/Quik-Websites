@@ -4,7 +4,7 @@ export const dummyPaymentsHistory = [
     transaction: "basic subscription",
     amount: 69,
     date: "11/04/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "3304",
@@ -17,7 +17,7 @@ export const dummyPaymentsHistory = [
     transaction: "premium subscription",
     amount: 102,
     date: "11/02/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "4029",
@@ -30,7 +30,7 @@ export const dummyPaymentsHistory = [
     transaction: "software license",
     amount: 49,
     date: "10/29/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Visa",
       number: "7521",
@@ -43,7 +43,7 @@ export const dummyPaymentsHistory = [
     transaction: "cloud storage",
     amount: 15,
     date: "10/27/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "6643",
@@ -56,7 +56,7 @@ export const dummyPaymentsHistory = [
     transaction: "marketing tools",
     amount: 199,
     date: "10/25/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Visa",
       number: "8832",
@@ -69,7 +69,7 @@ export const dummyPaymentsHistory = [
     transaction: "design software",
     amount: 89,
     date: "10/23/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "2217",
@@ -82,7 +82,7 @@ export const dummyPaymentsHistory = [
     transaction: "crm software",
     amount: 179,
     date: "10/03/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Mastercard",
       number: "4418",
@@ -95,7 +95,7 @@ export const dummyPaymentsHistory = [
     transaction: "email marketing",
     amount: 49,
     date: "10/01/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "9923",
@@ -108,7 +108,7 @@ export const dummyPaymentsHistory = [
     transaction: "project tracking",
     amount: 69,
     date: "09/29/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "6612",
@@ -121,7 +121,7 @@ export const dummyPaymentsHistory = [
     transaction: "customer support",
     amount: 39,
     date: "09/27/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "7741",
@@ -134,7 +134,7 @@ export const dummyPaymentsHistory = [
     transaction: "team collaboration",
     amount: 119,
     date: "09/25/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Mastercard",
       number: "5526",
@@ -147,7 +147,7 @@ export const dummyPaymentsHistory = [
     transaction: "data visualization",
     amount: 89,
     date: "09/23/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "3315",
@@ -160,7 +160,7 @@ export const dummyPaymentsHistory = [
     transaction: "network monitoring",
     amount: 199,
     date: "09/21/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "9988",
@@ -173,7 +173,7 @@ export const dummyPaymentsHistory = [
     transaction: "project management",
     amount: 39,
     date: "10/21/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Visa",
       number: "5601",
@@ -186,7 +186,7 @@ export const dummyPaymentsHistory = [
     transaction: "analytics platform",
     amount: 129,
     date: "10/19/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "9914",
@@ -199,7 +199,7 @@ export const dummyPaymentsHistory = [
     transaction: "communication tool",
     amount: 25,
     date: "10/17/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "6653",
@@ -212,7 +212,7 @@ export const dummyPaymentsHistory = [
     transaction: "security service",
     amount: 79,
     date: "10/15/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "4401",
@@ -225,7 +225,7 @@ export const dummyPaymentsHistory = [
     transaction: "hosting service",
     amount: 59,
     date: "10/13/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "3312",
@@ -238,7 +238,7 @@ export const dummyPaymentsHistory = [
     transaction: "productivity suite",
     amount: 149,
     date: "10/11/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Mastercard",
       number: "7725",
@@ -251,7 +251,7 @@ export const dummyPaymentsHistory = [
     transaction: "design assets",
     amount: 29,
     date: "10/09/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "5542",
@@ -264,7 +264,7 @@ export const dummyPaymentsHistory = [
     transaction: "ai tools",
     amount: 249,
     date: "10/07/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "8877",
@@ -277,7 +277,7 @@ export const dummyPaymentsHistory = [
     transaction: "development platform",
     amount: 99,
     date: "10/05/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "2206",
@@ -290,7 +290,7 @@ export const dummyPaymentsHistory = [
     transaction: "crm software",
     amount: 179,
     date: "10/03/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Mastercard",
       number: "4418",
@@ -303,7 +303,7 @@ export const dummyPaymentsHistory = [
     transaction: "email marketing",
     amount: 49,
     date: "10/01/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "9923",
@@ -316,7 +316,7 @@ export const dummyPaymentsHistory = [
     transaction: "project tracking",
     amount: 69,
     date: "09/29/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "6612",
@@ -329,7 +329,7 @@ export const dummyPaymentsHistory = [
     transaction: "customer support",
     amount: 39,
     date: "09/27/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "7741",
@@ -342,7 +342,7 @@ export const dummyPaymentsHistory = [
     transaction: "team collaboration",
     amount: 119,
     date: "09/25/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Mastercard",
       number: "5526",
@@ -355,7 +355,7 @@ export const dummyPaymentsHistory = [
     transaction: "data visualization",
     amount: 89,
     date: "09/23/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "3315",
@@ -368,7 +368,7 @@ export const dummyPaymentsHistory = [
     transaction: "network monitoring",
     amount: 199,
     date: "09/21/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "9988",
@@ -382,7 +382,7 @@ export const dummyPaymentsHistory = [
     transaction: "basic subscription",
     amount: 69,
     date: "11/04/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "3304",
@@ -395,7 +395,7 @@ export const dummyPaymentsHistory = [
     transaction: "premium subscription",
     amount: 102,
     date: "11/02/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "4029",
@@ -408,7 +408,7 @@ export const dummyPaymentsHistory = [
     transaction: "software license",
     amount: 49,
     date: "10/29/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Visa",
       number: "7521",
@@ -421,7 +421,7 @@ export const dummyPaymentsHistory = [
     transaction: "cloud storage",
     amount: 15,
     date: "10/27/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "6643",
@@ -434,7 +434,7 @@ export const dummyPaymentsHistory = [
     transaction: "marketing tools",
     amount: 199,
     date: "10/25/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Visa",
       number: "8832",
@@ -447,7 +447,7 @@ export const dummyPaymentsHistory = [
     transaction: "design software",
     amount: 89,
     date: "10/23/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "2217",
@@ -460,7 +460,7 @@ export const dummyPaymentsHistory = [
     transaction: "project management",
     amount: 39,
     date: "10/21/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Visa",
       number: "5601",
@@ -473,7 +473,7 @@ export const dummyPaymentsHistory = [
     transaction: "analytics platform",
     amount: 129,
     date: "10/19/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Mastercard",
       number: "9914",
@@ -486,7 +486,7 @@ export const dummyPaymentsHistory = [
     transaction: "communication tool",
     amount: 25,
     date: "10/17/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "6653",
@@ -499,7 +499,7 @@ export const dummyPaymentsHistory = [
     transaction: "security service",
     amount: 79,
     date: "10/15/2024",
-    category: "pending",
+    status: "pending",
     account: {
       type: "Mastercard",
       number: "4401",
@@ -512,7 +512,7 @@ export const dummyPaymentsHistory = [
     transaction: "hosting service",
     amount: 59,
     date: "10/13/2024",
-    category: "accepted",
+    status: "accepted",
     account: {
       type: "Visa",
       number: "3312",
@@ -525,7 +525,7 @@ export const dummyPaymentsHistory = [
     transaction: "productivity suite",
     amount: 149,
     date: "10/11/2024",
-    category: "rejected",
+    status: "rejected",
     account: {
       type: "Mastercard",
       number: "7725",
