@@ -3,7 +3,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Dot, PlusSquare } from "lucide-react";
 import Image from "next/image";
 
-export default function PaymentMethod({ paymentMethodsData }) {
+export default function PaymentMethod({
+  paymentMethodsData,
+  setShowNewCardModal,
+}) {
   const { paymentMethods, defaultPaymentMethodId } = paymentMethodsData;
 
   const activeMethod =
@@ -18,7 +21,7 @@ export default function PaymentMethod({ paymentMethodsData }) {
 
       <RadioGroup
         defaultValue={activeMethod.id}
-        className="flex flex-col gap-3 md:flex-row"
+        className="flex flex-col flex-wrap gap-3 md:flex-row"
       >
         {paymentMethods.map((method) => (
           <Method
@@ -28,15 +31,18 @@ export default function PaymentMethod({ paymentMethodsData }) {
           />
         ))}
 
-        <NewMethod />
+        <NewMethod setShowNewCardModal={setShowNewCardModal} />
       </RadioGroup>
     </div>
   );
 }
 
-function NewMethod() {
+function NewMethod({ setShowNewCardModal }) {
   return (
-    <button className="flex size-[72px] flex-col items-center justify-center gap-[2px] rounded-xl border-2 pt-2">
+    <button
+      onClick={() => setShowNewCardModal(true)}
+      className="flex size-[72px] flex-col items-center justify-center gap-[2px] rounded-xl border-2 pt-2"
+    >
       <PlusSquare size={20} color="#739A88" />
       <p className="text-base text-darkGreen">New</p>
     </button>
@@ -58,7 +64,9 @@ function Method({ data, isActive }) {
               <p className="text-gray900">**** {data.card.last4}</p>
 
               <div className="flex capitalize text-[#677489]">
-                <p>{data.card.display_brand}</p>
+                <p className="max-w-[100px] truncate">
+                  {data.card.display_brand.split("_").join(" ")}
+                </p>
                 <Dot color="#677489" />
                 <p>Edit</p>
               </div>
@@ -67,14 +75,11 @@ function Method({ data, isActive }) {
         </div>
 
         <Image
-          src={
-            data.card.display_brand
-              ? `/icons/${data.card.display_brand}.svg`
-              : "/icons/ion_card-outline.svg"
-          }
+          src={`/icons/${data.card.display_brand}.svg`}
           alt={data.card.display_brand + "logo"}
           width={40}
           height={40}
+          onError={(e) => (e.target.src = "/icons/ion_card-outline.svg")}
           className="w-[40px] object-contain object-center"
         />
       </Label>

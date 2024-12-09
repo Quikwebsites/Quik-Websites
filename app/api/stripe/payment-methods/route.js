@@ -21,10 +21,13 @@ export async function GET(request) {
     const defaultPaymentMethodId =
       customer.invoice_settings.default_payment_method;
 
-    return NextResponse.json({
-      paymentMethods: paymentMethods.data,
-      defaultPaymentMethodId,
-    });
+    return NextResponse.json(
+      {
+        paymentMethods: paymentMethods.data,
+        defaultPaymentMethodId,
+      },
+      { status: 200 },
+    );
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

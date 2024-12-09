@@ -1,5 +1,11 @@
+import { cn } from "@/lib/utils";
 import { LoaderCircle } from "lucide-react";
 
-export default function LoadingSpinner() {
-  return <LoaderCircle size={48} className="animate-spin text-gray30" />;
+export default function LoadingSpinner({ position }) {
+  return (
+    <LoaderCircle
+      size={48}
+      className={cn("animate-spin text-gray30", position)}
+    />
+  );
 }

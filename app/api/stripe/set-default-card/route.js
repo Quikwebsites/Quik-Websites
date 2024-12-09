@@ -1,8 +1,8 @@
 import { stripe } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
-  const customerId = request.nextUrl.searchParams.get("customerId");
+export async function POST(request) {
+  const { customerId, paymentMethodId } = await request.json();
 
   if (!customerId) {
     return NextResponse.json(
@@ -12,9 +12,11 @@ export async function GET(request) {
   }
 
   try {
-    const charges = await stripe.charges.list({ customer: customerId });
+    await stripe.customers.update(customerId, {
+      invoice_settings: { default_payment_method: paymentMethodId },
+    });
 
-    return NextResponse.json(charges.data, { status: 200 });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
