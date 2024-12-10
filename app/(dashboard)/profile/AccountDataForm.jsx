@@ -1,9 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { collection, doc, getDocs, updateDoc } from "firebase/firestore";
 
+import { db } from "@/lib/firebase/config";
+import { useAuthStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,6 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Check, X } from "lucide-react";
 import PhoneNumberInput from "@/components/layout/phone-number-input";
+import LoadingSpinner from "@/components/layout/loading-spinner";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -29,26 +34,75 @@ const formSchema = z.object({
     .max(14, { message: "Must be a valid mobile number" }),
   email: z.string().email({ message: "Invalid email address" }),
   biography: z.string(),
-  notifications: z.boolean().optional(),
+  receiveNewsletters: z.boolean().optional(),
 });
 
 export function AccountDataForm() {
+  const [loading, setLoading] = useState(true);
+  const { currentUser } = useAuthStore();
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "Joe guyster",
-      phoneNumber: "+1234567890",
-      email: "Joe@gmail.com",
-      biography:
-        "Hi there! 👋 I'm X-AE-A-19, an AI enthusiast and fitness aficionado. When I'm not crunching numbers or optimizing algorithms, you can find me hitting the gym.",
-      notifications: true,
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      biography: "",
+      receiveNewsletters: false,
     },
   });
 
-  const onSubmit = (data) => {
-    // Handle form submission
-    console.log(data);
+  const onSubmit = async (data) => {
+    setLoading(true);
+
+    try {
+      const personalInfoQuerySnap = await getDocs(
+        collection(db, `users/${currentUser.email}/personalInfo`),
+      );
+
+      if (!querySnap.size) throw new Error("User does not exits");
+
+      const userDocRef = doc(
+        db,
+        `users/${currentUser.email}/personalInfo`,
+        personalInfoQuerySnap.docs[0].id,
+      );
+
+      await updateDoc(userDocRef, data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const fetchUserData = async () => {
+    try {
+      const personalInfoQuerySnap = await getDocs(
+        collection(db, `users/${currentUser.email}/personalInfo`),
+      );
+      personalInfoQuerySnap.forEach((doc) => {
+        const userData = doc.data();
+        form.reset({
+          fullName: userData?.fullName || "",
+          phoneNumber: userData?.phoneNumber || "",
+          email: userData?.customerEmail || "",
+          biography: userData?.customerBiography || "",
+          receiveNewsletters: userData?.receiveNewsletters || false,
+        });
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  if (loading) return <LoadingSpinner position="mx-auto mt-40" />;
 
   return (
     <Form {...form}>
@@ -119,13 +173,13 @@ export function AccountDataForm() {
 
         <FormField
           control={form.control}
-          name="notifications"
+          name="receiveNewsletters"
           render={({ field }) => (
             <FormItem className="items-start">
               <FormLabel>Notifications</FormLabel>
               <FormControl>
                 <Checkbox
-                  id="notifications"
+                  id="receiveNewsletters"
                   title="Newsletter"
                   description="You will be notified about our latest updates"
                   checked={field.value}

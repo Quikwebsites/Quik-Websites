@@ -88,7 +88,7 @@ export default function PaymentsTabContent() {
     getPaymentHistory();
   }, []);
 
-  if (loading) return <LoadingSpinner position="mx-auto mt-40" />;
+  if (loading) return <LoadingSpinner position="mx-auto mt-60" />;
 
   return (
     <div className="mt-11">

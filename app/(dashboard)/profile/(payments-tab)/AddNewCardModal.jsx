@@ -81,7 +81,7 @@ const inputStyle = {
 
 export default function AddNewCardModal({ setShowNewCardModal }) {
   return (
-    <div className="absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center gap-10 bg-black/30 backdrop-blur-sm">
+    <div className="fixed left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center gap-10 bg-black/30 backdrop-blur-sm">
       <div className="relative flex max-h-[94%] w-full max-w-[656px] flex-col overflow-auto rounded-2xl bg-white px-8 py-6">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">

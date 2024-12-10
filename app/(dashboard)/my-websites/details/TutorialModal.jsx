@@ -2,7 +2,7 @@ import { X } from "lucide-react";
 
 export default function TutorialModal({ setShowTutorialModal }) {
   return (
-    <div className="absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center gap-10 bg-black/80">
+    <div className="fixed left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center gap-10 bg-black/80">
       <button
         onClick={() => setShowTutorialModal(false)}
         className="flex flex-col items-center gap-2"
