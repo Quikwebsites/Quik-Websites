@@ -24,7 +24,7 @@ export default function PaymentsTabContent() {
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL +
-          "/api/stripe/payment-methods?customerId=cus_RLpFJzolVGpc6l",
+          "/api/stripe/payment-methods?customerId=cus_Qgjzmn8G7jDp8P",
       );
       const data = await response.json();
       setPaymentMethodsData(data);
@@ -44,7 +44,7 @@ export default function PaymentsTabContent() {
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL +
-          "/api/stripe/payment-history?customerId=cus_RLpFJzolVGpc6l",
+          "/api/stripe/payment-history?customerId=cus_Qgjzmn8G7jDp8P",
       );
       const data = await response.json();
 

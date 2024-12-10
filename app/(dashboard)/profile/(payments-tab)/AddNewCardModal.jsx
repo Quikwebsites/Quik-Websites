@@ -20,7 +20,7 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 );
 
-const customerId = "cus_RLpFJzolVGpc6l";
+const customerId = "cus_Qgjzmn8G7jDp8P";
 
 // Address element styles
 const appearance = {
