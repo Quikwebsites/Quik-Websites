@@ -5,8 +5,8 @@ import { Suspense } from "react";
 
 export default function AuthLayout({ children }) {
   return (
-    <div className="bg-background flex min-h-screen flex-col justify-between">
-      <div className="relative flex justify-center pt-6 md:pt-12">
+    <div className="flex min-h-screen flex-col justify-between bg-background">
+      <div className="relative flex items-center justify-end pr-3 pt-6 md:justify-center md:pr-0 md:pt-12">
         <Suspense>
           <BackButton />
         </Suspense>

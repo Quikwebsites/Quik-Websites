@@ -41,7 +41,7 @@ function NewMethod({ setShowNewCardModal }) {
   return (
     <button
       onClick={() => setShowNewCardModal(true)}
-      className="flex size-[72px] flex-col items-center justify-center gap-[2px] rounded-xl border-2 pt-2"
+      className="flex w-full flex-col items-center justify-center gap-[2px] rounded-xl border-2 pt-2 md:size-[72px]"
     >
       <PlusSquare size={20} color="#739A88" />
       <p className="text-base text-darkGreen">New</p>
@@ -54,7 +54,7 @@ function Method({ data, isActive }) {
     <div>
       <Label
         htmlFor={data.id}
-        className="flex w-[260px] cursor-pointer items-center justify-between rounded-xl border-2 border-gray200 px-4 pb-2 pt-3 text-base font-normal [&:has(button[aria-checked=true])]:border-greenGradientColor2"
+        className="flex cursor-pointer items-center justify-between rounded-xl border-2 border-gray200 px-4 pb-2 pt-3 text-base font-normal md:w-[260px] [&:has(button[aria-checked=true])]:border-greenGradientColor2"
       >
         <div className="space-y-2">
           <div className="flex gap-3 pt-1">

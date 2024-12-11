@@ -71,12 +71,12 @@ export function DescriptionCard({ websiteData }) {
           </time>
         </div>
 
-        <Button
+        {/* <Button
           variant="link"
           className="mt-3 text-xs font-normal leading-loose tracking-tight text-destructive50"
         >
           De-list website
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "../ui/button";
+import StripePricingTableModal from "./stripe-pricing-table-modal";
+import { useState } from "react";
 
 export function BusinessEmailCard({ bulletPoints }) {
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+
   return (
     <div className="flex w-full max-w-[228px] flex-col items-center rounded-2xl bg-darkGreen p-[18px]">
       <h5 className="w-[170px] border-b border-solid border-b-lightGreen pb-2.5 text-center text-lg font-bold capitalize tracking-[-0.36px] text-lightGreen">
@@ -30,9 +36,14 @@ export function BusinessEmailCard({ bulletPoints }) {
       <Button
         variant="lightGreen"
         className="mt-5 w-full text-[16px]/[25px] font-[450]"
+        onClick={() => setShowUpgradeModal(true)}
       >
         Upgrade
       </Button>
+
+      {showUpgradeModal && (
+        <StripePricingTableModal setShowUpgradeModal={setShowUpgradeModal} />
+      )}
     </div>
   );
 }

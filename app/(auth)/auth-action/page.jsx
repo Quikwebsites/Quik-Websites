@@ -31,7 +31,7 @@ export default async function ResetPasswordPage({ searchParams }) {
         description={
           mode === "resetPassword"
             ? "Select your new password below"
-            : "Forgot your password? No worries, let’s submit password reset below . keep an eye on your email."
+            : "Forgot your password? No worries, let’s submit password reset below. Keep an eye on your email."
         }
       >
         {mode === "resetPassword" ? (

@@ -36,7 +36,7 @@ export default function ActionsButtons() {
             onClick={() => setShowTutorialModal(true)}
           >
             <p>
-              Visit the link below to learn more about how tot use markup
+              Visit the link below to learn more about how to use markup
               <br />
               <br />
               <span className="cursor-pointer underline">

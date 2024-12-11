@@ -51,7 +51,7 @@ export default function MyWebsitesPage() {
       {loading ? (
         <LoadingSpinner position="mx-auto mt-40" />
       ) : (
-        <div className="flex flex-wrap gap-[14px] pt-8 animate-in">
+        <div className="flex flex-wrap justify-center gap-[14px] pt-8 animate-in md:justify-start">
           {websitesData &&
             websitesData.map((website) => (
               <WebsiteCard key={website.domainInfo.domainName} data={website} />
