@@ -5,7 +5,7 @@ const apiToken = "887dc9b929b297771e16ffa54bab1c98ff553930";
 const apiUrl = "https://api.name.com/v4/domains:checkAvailability";
 
 export async function POST(request) {
-  const domain = request.nextUrl.searchParams.get("domain");
+  const { domain } = await request.json();
 
   try {
     const response = await fetch(apiUrl, {
