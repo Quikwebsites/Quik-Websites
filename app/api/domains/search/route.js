@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 export async function POST(request) {
-  const { domain } = await request.json();
+  const { keyword } = await request.json();
 
   console.log("Incoming request headers:", Object.fromEntries(request.headers));
 
@@ -20,21 +20,18 @@ export async function POST(request) {
   }
 
   try {
-    const response = await fetch(
-      "https://api.name.com/v4/domains:checkAvailability",
-      {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Basic " +
-            btoa(
-              `${process.env.NAME_API_USERNAME}:${process.env.NAME_API_TOKEN}`,
-            ),
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ domainNames: [domain] }),
+    const response = await fetch("https://api.name.com/v4/domains:search", {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Basic " +
+          btoa(
+            `${process.env.NAME_API_USERNAME}:${process.env.NAME_API_TOKEN}`,
+          ),
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({ keyword: keyword }),
+    });
     const result = await response.json();
 
     if (!response.ok)
