@@ -103,6 +103,7 @@ export default function PaymentsTabContent() {
       <PaymentMethod
         paymentMethodsData={paymentMethodsData}
         setShowNewCardModal={setShowNewCardModal}
+        setLoadingPaymentMethods={setLoadingPaymentMethods}
       />
 
       <PaymentHistory

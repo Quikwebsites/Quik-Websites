@@ -146,7 +146,7 @@ export default function LoginPage() {
 
             <Link
               href="/auth-action?mode=resetPasswordRequest"
-              className="text-sm text-midGreen"
+              className="w-full text-right text-sm text-midGreen"
             >
               Forgot Password?
             </Link>

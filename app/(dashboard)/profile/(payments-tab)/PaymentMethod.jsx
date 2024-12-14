@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAuthStore } from "@/lib/store";
 import { Dot, PlusSquare } from "lucide-react";
 import Image from "next/image";
 
 export default function PaymentMethod({
   paymentMethodsData,
   setShowNewCardModal,
+  setLoadingPaymentMethods,
 }) {
   const { paymentMethods, defaultPaymentMethodId } = paymentMethodsData;
+  const [checkedId, setCheckedId] = useState();
 
   const activeMethod = paymentMethods?.find(
     (method) => method.id === defaultPaymentMethodId,
@@ -21,6 +25,7 @@ export default function PaymentMethod({
 
       <RadioGroup
         defaultValue={activeMethod?.id}
+        onValueChange={(e) => setCheckedId(e)}
         className="flex flex-col flex-wrap gap-3 md:flex-row"
       >
         {paymentMethods &&
@@ -28,7 +33,9 @@ export default function PaymentMethod({
             <Method
               key={method.id}
               data={method}
-              isActive={activeMethod.id === method.id}
+              isActive={activeMethod?.id === method.id}
+              isChecked={checkedId === method.id}
+              setLoadingPaymentMethods={setLoadingPaymentMethods}
             />
           ))}
 
@@ -50,7 +57,30 @@ function NewMethod({ setShowNewCardModal }) {
   );
 }
 
-function Method({ data, isActive }) {
+function Method({ data, isActive, isChecked, setLoadingPaymentMethods }) {
+  const { currentUser } = useAuthStore();
+
+  const setActiveCard = async () => {
+    setLoadingPaymentMethods(true);
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/set-default-card`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            customerId: currentUser?.customerId,
+            paymentMethodId: data.id,
+          }),
+        },
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+      setLoadingPaymentMethods(false);
+    }
+  };
+
   return (
     <div>
       <Label
@@ -68,8 +98,8 @@ function Method({ data, isActive }) {
                 <p className="max-w-[100px] truncate">
                   {data.card.display_brand.split("_").join(" ")}
                 </p>
-                <Dot color="#677489" />
-                <p>Edit</p>
+                {/* <Dot color="#677489" /> */}
+                {/* <p>Edit</p> */}
               </div>
             </div>
           </div>
@@ -89,6 +119,15 @@ function Method({ data, isActive }) {
         <p className="pl-2 pt-2 text-xs font-light tracking-tight text-gray60">
           Currently active
         </p>
+      )}
+
+      {isChecked && !isActive && (
+        <button
+          onClick={setActiveCard}
+          className="-mt-[4px] pl-2 pt-2 text-xs font-light tracking-tight text-black underline"
+        >
+          Make Active
+        </button>
       )}
     </div>
   );
