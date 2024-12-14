@@ -71,6 +71,8 @@ export function AccountDataForm() {
       );
 
       await updateDoc(userDocRef, data);
+
+      setEditForm(false);
     } catch (error) {
       console.error(error);
     } finally {
