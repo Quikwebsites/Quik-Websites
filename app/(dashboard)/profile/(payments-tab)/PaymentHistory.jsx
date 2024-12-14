@@ -52,7 +52,7 @@ export default function PaymentHistory({ data, columns }) {
       <PaymentHistoryHeader table={table} />
 
       <div className="pt-6">
-        <Table>
+        <Table className="w-full min-w-[800px]">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

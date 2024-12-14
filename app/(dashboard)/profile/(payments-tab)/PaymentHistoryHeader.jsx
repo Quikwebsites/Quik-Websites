@@ -31,12 +31,12 @@ export default function PaymentHistoryHeader({ table }) {
   }, [date, table]);
 
   return (
-    <div className="flex w-full justify-between">
+    <div className="flex w-full flex-col justify-between md:flex-row md:items-center">
       <p className="mb-2 text-lg font-bold tracking-tight text-gray80">
         Payment History
       </p>
 
-      <div className="flex gap-2">
+      <div className="flex items-center justify-end gap-2">
         {/* Date picker */}
         <Popover>
           <PopoverTrigger asChild>
@@ -64,7 +64,7 @@ export default function PaymentHistoryHeader({ table }) {
             <Button
               variant="default"
               size="sm"
-              className="ml-auto text-base font-[450]"
+              className="text-base font-[450]"
             >
               <ListFilter size={20} /> Filter
             </Button>
