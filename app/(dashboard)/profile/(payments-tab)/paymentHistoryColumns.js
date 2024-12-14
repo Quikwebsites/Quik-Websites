@@ -3,17 +3,18 @@
 import { ArrowUpDown, Pencil } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
+
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuLabel,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
 
 export const paymentHistoryColumns = [
   {
@@ -94,6 +95,7 @@ export const paymentHistoryColumns = [
     header: "Account",
     cell: ({ row }) => {
       const account = row.getValue("account");
+      if (!account) return <p>--</p>;
       return (
         <div className="*w-[180px] flex w-full items-center gap-3 py-0.5">
           <Image
@@ -118,40 +120,40 @@ export const paymentHistoryColumns = [
     },
   },
 
-  {
-    accessorKey: "edit",
-    header: "",
-    id: "edit",
-    cell: ({ row }) => {
-      const payment = row.original;
+  // {
+  //   accessorKey: "edit",
+  //   header: "",
+  //   id: "edit",
+  //   cell: ({ row }) => {
+  //     const payment = row.original;
 
-      return (
-        <div className="*w-10">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="h-8 w-8 outline-none focus-visible:ring-transparent"
-              >
-                <span className="sr-only">Open menu</span>
-                <Pencil className="h-5 w-5 text-gray60" />
-              </Button>
-            </DropdownMenuTrigger>
+  //     return (
+  //       <div className="*w-10">
+  //         <DropdownMenu>
+  //           <DropdownMenuTrigger asChild>
+  //             <Button
+  //               variant="ghost"
+  //               className="h-8 w-8 outline-none focus-visible:ring-transparent"
+  //             >
+  //               <span className="sr-only">Open menu</span>
+  //               <Pencil className="h-5 w-5 text-gray60" />
+  //             </Button>
+  //           </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Edit</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(payment.id)}
-              >
-                Request edits
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View transaction</DropdownMenuItem>
-              <DropdownMenuItem>View payment details</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-      );
-    },
-  },
+  //           <DropdownMenuContent align="end">
+  //             <DropdownMenuLabel>Edit</DropdownMenuLabel>
+  //             <DropdownMenuItem
+  //               onClick={() => navigator.clipboard.writeText(payment.id)}
+  //             >
+  //               Request edits
+  //             </DropdownMenuItem>
+  //             <DropdownMenuSeparator />
+  //             <DropdownMenuItem>View transaction</DropdownMenuItem>
+  //             <DropdownMenuItem>View payment details</DropdownMenuItem>
+  //           </DropdownMenuContent>
+  //         </DropdownMenu>
+  //       </div>
+  //     );
+  //   },
+  // },
 ];

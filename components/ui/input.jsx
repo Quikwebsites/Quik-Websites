@@ -8,7 +8,7 @@ const Input = React.forwardRef(
       <input
         type={type}
         className={cn(
-          "flex h-12 w-full max-w-[520px] rounded-full border border-gray30 bg-white p-3 pl-4 !text-base font-[450] tracking-[-0.112px] text-gray60 ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-darkGreen placeholder:text-gray40 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-[#EBEBEB] disabled:placeholder:text-gray60 md:text-sm",
+          "flex h-12 w-full max-w-[520px] rounded-full border border-gray30 bg-white p-3 pl-4 !text-base font-[450] tracking-[-0.112px] text-gray60 ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-darkGreen placeholder:text-gray40 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-white disabled:placeholder:text-gray60 md:text-sm",
           variant === "auth" && "rounded-2xl !text-sm font-normal",
           className,
         )}

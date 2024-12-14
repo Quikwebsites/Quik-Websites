@@ -18,11 +18,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Check, X } from "lucide-react";
+import { Check, Pencil, X } from "lucide-react";
 import PhoneNumberInput from "@/components/layout/phone-number-input";
 import LoadingSpinner from "@/components/layout/loading-spinner";
+
+// import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -33,12 +34,13 @@ const formSchema = z.object({
     .min(10, { message: "Must be a valid mobile number" })
     .max(14, { message: "Must be a valid mobile number" }),
   email: z.string().email({ message: "Invalid email address" }),
-  biography: z.string(),
+  // biography: z.string(),
   receiveNewsletters: z.boolean().optional(),
 });
 
 export function AccountDataForm() {
   const [loading, setLoading] = useState(true);
+  const [editForm, setEditForm] = useState(false);
   const { currentUser } = useAuthStore();
 
   const form = useForm({
@@ -47,7 +49,7 @@ export function AccountDataForm() {
       fullName: "",
       phoneNumber: "",
       email: "",
-      biography: "",
+      // biography: "",
       receiveNewsletters: false,
     },
   });
@@ -60,7 +62,7 @@ export function AccountDataForm() {
         collection(db, `users/${currentUser.email}/personalInfo`),
       );
 
-      if (!querySnap.size) throw new Error("User does not exits");
+      if (!personalInfoQuerySnap.size) throw new Error("User does not exits");
 
       const userDocRef = doc(
         db,
@@ -87,7 +89,7 @@ export function AccountDataForm() {
           fullName: userData?.fullName || "",
           phoneNumber: userData?.phoneNumber || "",
           email: userData?.customerEmail || "",
-          biography: userData?.customerBiography || "",
+          // biography: userData?.customerBiography || "",
           receiveNewsletters: userData?.receiveNewsletters || false,
         });
       });
@@ -114,7 +116,11 @@ export function AccountDataForm() {
             <FormItem>
               <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input placeholder="Enter full name" {...field} />
+                <Input
+                  placeholder="Enter full name"
+                  disabled={!editForm}
+                  {...field}
+                />
               </FormControl>
 
               <FormMessage />
@@ -129,7 +135,7 @@ export function AccountDataForm() {
             <FormItem>
               <FormLabel>Phone Number</FormLabel>
               <FormControl>
-                <PhoneNumberInput {...field} />
+                <PhoneNumberInput disabled={!editForm} {...field} />
               </FormControl>
 
               <FormMessage />
@@ -144,7 +150,11 @@ export function AccountDataForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Enter email address" {...field} />
+                <Input
+                  placeholder="Enter email address"
+                  disabled={!editForm}
+                  {...field}
+                />
               </FormControl>
 
               <FormMessage />
@@ -152,7 +162,7 @@ export function AccountDataForm() {
           )}
         />
 
-        <FormField
+        {/* <FormField
           control={form.control}
           name="biography"
           render={({ field }) => (
@@ -162,6 +172,7 @@ export function AccountDataForm() {
                 <Textarea
                   placeholder="Type your message here."
                   className="text-area-resizer"
+                  disabled={!editForm}
                   {...field}
                 />
               </FormControl>
@@ -169,7 +180,7 @@ export function AccountDataForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         <FormField
           control={form.control}
@@ -182,6 +193,7 @@ export function AccountDataForm() {
                   id="receiveNewsletters"
                   title="Newsletter"
                   description="You will be notified about our latest updates"
+                  disabled={!editForm}
                   checked={field.value}
                   onCheckedChange={field.onChange}
                   {...field}
@@ -194,22 +206,40 @@ export function AccountDataForm() {
         />
 
         <div className="mt-6 flex items-center justify-end gap-2">
-          <Button
-            type="submit"
-            variant="outline"
-            size="sm"
-            className="text-sm font-bold"
-          >
-            Cancel <X size={20} />
-          </Button>
-          <Button
-            type="submit"
-            variant="secondary"
-            size="sm"
-            className="text-sm font-bold"
-          >
-            Save <Check size={20} />
-          </Button>
+          {editForm ? (
+            <>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setEditForm(false);
+                  fetchUserData();
+                }}
+                className="text-sm font-bold"
+              >
+                Cancel <X size={20} />
+              </Button>
+              <Button
+                type="submit"
+                variant="secondary"
+                size="sm"
+                className="text-sm font-bold"
+              >
+                Save <Check size={20} />
+              </Button>
+            </>
+          ) : (
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={() => setEditForm(true)}
+              className="text-sm font-bold"
+            >
+              Edit <Pencil size={14} />
+            </Button>
+          )}
         </div>
       </form>
     </Form>

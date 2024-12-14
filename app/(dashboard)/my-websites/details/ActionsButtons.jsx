@@ -5,7 +5,7 @@ import { PencilIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import TutorialModal from "./TutorialModal";
 
-export default function ActionsButtons() {
+export default function ActionsButtons({ domainName }) {
   const [showTutorialModal, setShowTutorialModal] = useState(false);
 
   useEffect(() => {
@@ -24,12 +24,16 @@ export default function ActionsButtons() {
         </p>
 
         <div className="flex items-center gap-4">
-          <Button
-            variant="secondary"
-            className="min-h-[40px] rounded-[10px] px-2"
+          <a
+            href={`mailto:support@quikwebsites.com?subject=Markup Request - from ${domainName}`}
           >
-            <PencilIcon size={14} /> Request Updates
-          </Button>
+            <Button
+              variant="secondary"
+              className="min-h-[40px] rounded-[10px] px-2"
+            >
+              <PencilIcon size={14} /> Request Updates
+            </Button>
+          </a>
 
           <TooltipStyled
             title="Markup Guide"

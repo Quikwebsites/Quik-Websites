@@ -17,7 +17,7 @@ export default function AccountTabContent() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <TooltipStyled title="Upgrade today">
             <p>
               Get ranked higher with advanced SEO and page Meta data
@@ -28,7 +28,7 @@ export default function AccountTabContent() {
           <Button variant="gradient">
             Go Premium <Star size={20} strokeWidth={2.5} />
           </Button>
-        </div>
+        </div> */}
       </div>
 
       <AccountDataForm />

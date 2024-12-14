@@ -2,21 +2,25 @@
 
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { paymentHistoryColumns } from "./paymentHistoryColumns";
+
+import { useAuthStore } from "@/lib/store";
 import { useToast } from "@/hooks/use-toast";
 import LoadingSpinner from "@/components/layout/loading-spinner";
+import { paymentHistoryColumns } from "./paymentHistoryColumns";
 import PaymentMethod from "./PaymentMethod";
 import PaymentHistory from "./PaymentHistory";
 import AddNewCardModal from "./AddNewCardModal";
 
 export default function PaymentsTabContent() {
   const [showNewCardModal, setShowNewCardModal] = useState(false);
-  const [paymentMethodsData, setPaymentMethodsData] = useState();
-  const [paymentHistoryData, setPaymentHistoryData] = useState();
+  const [paymentMethodsData, setPaymentMethodsData] = useState({});
+  const [paymentHistoryData, setPaymentHistoryData] = useState([]);
   const [loadingPaymentMethods, setLoadingPaymentMethods] = useState(true);
   const [loadingPaymentHistory, setLoadingPaymentHistory] = useState(true);
+  const { currentUser, loadingState } = useAuthStore();
 
-  const loading = loadingPaymentMethods || loadingPaymentHistory;
+  const loading =
+    loadingPaymentMethods || loadingPaymentHistory || loadingState;
 
   const { toast } = useToast();
 
@@ -24,7 +28,7 @@ export default function PaymentsTabContent() {
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL +
-          "/api/stripe/payment-methods?customerId=cus_Qgjzmn8G7jDp8P",
+          `/api/stripe/payment-methods?customerId=${currentUser.customerId}`,
       );
       const data = await response.json();
       setPaymentMethodsData(data);
@@ -44,23 +48,27 @@ export default function PaymentsTabContent() {
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_BASE_URL +
-          "/api/stripe/payment-history?customerId=cus_Qgjzmn8G7jDp8P",
+          `/api/stripe/payment-history?customerId=${currentUser.customerId}`,
       );
       const data = await response.json();
 
-      const formattedPaymentHistory = data.map((item) => ({
-        id: item.id,
-        transaction: item.description,
-        amount: item.amount / 100,
-        date: format(Date(item.created), "P"),
-        status: item.status,
-        account: {
-          type: item.payment_method_details.card.brand,
-          number: item.payment_method_details.card.last4,
-          icon: `/icons/${item.payment_method_details.card.brand}.svg`,
-          expires: `${item.payment_method_details.card.exp_year}/${item.payment_method_details.card.exp_month}`,
-        },
-      }));
+      const formattedPaymentHistory = data
+        ? data.map((item) => ({
+            id: item.id,
+            transaction: item.description,
+            amount: item.amount / 100,
+            date: format(Date(item.created), "P"),
+            status: item.status,
+            account: item.payment_method_details?.card
+              ? {
+                  type: item.payment_method_details?.card?.brand,
+                  number: item.payment_method_details?.card?.last4,
+                  icon: `/icons/${item.payment_method_details?.card?.brand}.svg`,
+                  expires: `${item.payment_method_details?.card?.exp_year}/${item.payment_method_details?.card?.exp_month}`,
+                }
+              : null,
+          }))
+        : [];
 
       setPaymentHistoryData(formattedPaymentHistory);
     } catch (error) {

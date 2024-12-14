@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import AuthFormCard from "@/components/layout/auth-form-card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { auth } from "@/lib/firebase/config";
+import { auth, db } from "@/lib/firebase/config";
 import { useToast } from "@/hooks/use-toast";
 import {
   Form,
@@ -55,8 +56,19 @@ export default function LoginPage() {
         data.email,
         data.password,
       );
+
+      // Get the current user customer ID from Firebase
+      let customerId;
+      const personalInfoQuerySnap = await getDocs(
+        collection(db, `users/${data.email}/personalInfo`),
+      );
+      personalInfoQuerySnap.forEach((doc) => {
+        const userData = doc.data();
+        customerId = userData?.customerId;
+      });
+
       const user = userCredential.user;
-      setCurrentUser(user);
+      setCurrentUser({ ...user, customerId });
       router.push("/");
     } catch (error) {
       console.error(error);
@@ -154,7 +166,7 @@ export default function LoginPage() {
           </Button>
 
           <Link
-            href="#"
+            href="https://quik-websites-4289fb.webflow.io/quik-pricing"
             className="mt-6 block w-full text-center text-sm text-darkGreen"
           >
             Not registered yet? Create an Account{" "}

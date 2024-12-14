@@ -12,6 +12,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { Check, X } from "lucide-react";
+import { useAuthStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import LoadingSpinner from "@/components/layout/loading-spinner";
@@ -19,8 +20,6 @@ import LoadingSpinner from "@/components/layout/loading-spinner";
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 );
-
-const customerId = "cus_Qgjzmn8G7jDp8P";
 
 // Address element styles
 const appearance = {
@@ -120,8 +119,7 @@ function AddNewCardForm() {
   const [success, setSuccess] = useState(false);
   const [defaultCard, setDefaultCard] = useState(false);
   const [addressElementData, setAddressElementData] = useState();
-
-  console.log(defaultCard);
+  const { currentUser } = useAuthStore();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -139,7 +137,7 @@ function AddNewCardForm() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ customerId }),
+          body: JSON.stringify({ customerId: currentUser?.customerId }),
         },
       );
       const { client_secret } = await response.json();
@@ -166,7 +164,7 @@ function AddNewCardForm() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              customerId: customerId,
+              customerId: currentUser?.customerId,
               paymentMethodId: setupIntent.payment_method,
             }),
           },
@@ -211,7 +209,7 @@ function AddNewCardForm() {
 
           <div className="flex gap-3">
             <div className="inpG">
-              <label htmlFor="cvv">CVV</label>
+              <label htmlFor="cvv">CVC</label>
 
               <CardCvcElement
                 className="inp"

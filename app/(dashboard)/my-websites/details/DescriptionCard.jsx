@@ -22,7 +22,7 @@ export function DescriptionCard({ websiteData }) {
           {businessDetails.primaryAction}
         </p>
 
-        <ActionsButtons />
+        <ActionsButtons domainName={domainInfo?.domainName} />
       </div>
 
       {/* Domain Info */}
@@ -71,12 +71,12 @@ export function DescriptionCard({ websiteData }) {
           </time>
         </div>
 
-        {/* <Button
-          variant="link"
-          className="mt-3 text-xs font-normal leading-loose tracking-tight text-destructive50"
+        <a
+          href={`mailto:support@quikwebsites.com?subject=Delist ${domainInfo.domainName}`}
+          className="mt-3 text-xs font-normal leading-loose tracking-tight text-destructive50 underline"
         >
           De-list website
-        </Button> */}
+        </a>
       </div>
     </div>
   );

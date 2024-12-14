@@ -9,9 +9,9 @@ export default function PaymentMethod({
 }) {
   const { paymentMethods, defaultPaymentMethodId } = paymentMethodsData;
 
-  const activeMethod =
-    paymentMethods.find((method) => method.id === defaultPaymentMethodId) ||
-    paymentMethods[0];
+  const activeMethod = paymentMethods?.find(
+    (method) => method.id === defaultPaymentMethodId,
+  );
 
   return (
     <div>
@@ -20,16 +20,17 @@ export default function PaymentMethod({
       </p>
 
       <RadioGroup
-        defaultValue={activeMethod.id}
+        defaultValue={activeMethod?.id}
         className="flex flex-col flex-wrap gap-3 md:flex-row"
       >
-        {paymentMethods.map((method) => (
-          <Method
-            key={method.id}
-            data={method}
-            isActive={activeMethod.id === method.id}
-          />
-        ))}
+        {paymentMethods &&
+          paymentMethods.map((method) => (
+            <Method
+              key={method.id}
+              data={method}
+              isActive={activeMethod.id === method.id}
+            />
+          ))}
 
         <NewMethod setShowNewCardModal={setShowNewCardModal} />
       </RadioGroup>
