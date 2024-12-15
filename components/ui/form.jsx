@@ -52,7 +52,8 @@ const FormItem = React.forwardRef(({ className, variant, ...props }, ref) => {
         ref={ref}
         className={cn(
           "relative flex flex-col gap-1 border-b border-gray20 py-6 md:flex-row md:items-center",
-          variant === "auth" && "flex-col items-start gap-2 border-none py-2",
+          variant === "auth" &&
+            "flex-col items-start gap-2 border-none py-2 md:flex-col md:items-start",
           className,
         )}
         {...props}
@@ -130,7 +131,7 @@ const FormMessage = React.forwardRef(
         id={formMessageId}
         className={cn(
           "text-sm font-medium text-red-500 dark:text-red-900 md:ml-auto",
-          variant === "auth" && "ml-0 font-normal",
+          variant === "auth" && "ml-0 font-normal md:ml-0",
           className,
         )}
         {...props}
