@@ -64,7 +64,7 @@ export default function LoginPage() {
       );
       personalInfoQuerySnap.forEach((doc) => {
         const userData = doc.data();
-        customerId = userData?.customerId;
+        customerId = userData?.stripeCustomerId;
       });
 
       const user = userCredential.user;

@@ -63,7 +63,7 @@ export default function WebsiteDetailsPage() {
           loading="lazy"
           width={600}
           height={800}
-          src={`/website-template-${websiteData?.subscriptionInfo.design}.jpg`}
+          src={`/${websiteData?.subscriptionInfo.design}.jpg`}
           alt={websiteData?.companyInfo.companyName + "Website design"}
           className="h-max rounded-2xl object-contain object-top md:w-[55%]"
         />

@@ -9,7 +9,7 @@ export default function WebsiteCard({ data }) {
     <div className="flex w-[251px] flex-col overflow-hidden rounded-[20px] bg-white p-2.5 shadow-10px">
       <Image
         loading="lazy"
-        src={`/website-template-${subscriptionInfo.design}.jpg`}
+        src={`/${subscriptionInfo.design}.jpg`}
         alt={companyInfo.companyName + "Website preview"}
         width={200}
         height={300}
