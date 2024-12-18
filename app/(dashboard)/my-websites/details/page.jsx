@@ -93,7 +93,7 @@ export default function WebsiteDetailsPage() {
               >
                 <Button
                   variant="secondary"
-                  className="my-4 h-max rounded-[10px] px-8 py-4 text-sm font-[450] md:my-0"
+                  className="my-4 h-max w-full rounded-[10px] px-8 py-4 text-sm font-[450] md:my-0"
                 >
                   Visit my site <MoveRight size={18} strokeWidth={1.5} />
                 </Button>
