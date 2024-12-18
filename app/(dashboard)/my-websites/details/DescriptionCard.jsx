@@ -12,7 +12,7 @@ export function DescriptionCard({ websiteData }) {
           Site Description
         </p>
 
-        <p className="mt-3 h-[300px] overflow-auto rounded-lg border border-gray20 px-5 pt-7 text-sm font-[450] leading-6 tracking-tight text-textDark">
+        <p className="mt-3 h-[160px] overflow-auto rounded-lg border border-gray20 px-5 pt-7 text-sm font-[450] leading-6 tracking-tight text-textDark">
           {businessDetails.mission}
           <br />
           {businessDetails.targetAudience}
@@ -22,11 +22,11 @@ export function DescriptionCard({ websiteData }) {
           {businessDetails.primaryAction}
         </p>
 
-        <ActionsButtons domainName={domainInfo?.domainName} />
+        {/* <ActionsButtons domainName={domainInfo?.domainName} /> */}
       </div>
 
       {/* Domain Info */}
-      <div className="flex w-full flex-col pb-8 tracking-tight">
+      <div className="flex w-full flex-col tracking-tight">
         <p className="text-base font-[450] leading-none tracking-tight text-black">
           Domain
         </p>
@@ -60,7 +60,7 @@ export function DescriptionCard({ websiteData }) {
       </div>
 
       {/* Active Dates  */}
-      <div className="mt-6 flex min-h-[120px] w-full flex-col">
+      <div className="flex min-h-[120px] w-full flex-col">
         <p className="text-base font-[450] leading-none tracking-tight text-black">
           Active Dates
         </p>

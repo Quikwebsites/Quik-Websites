@@ -18,8 +18,8 @@ export default function ActionsButtons({ domainName }) {
 
   return (
     <>
-      <div className="mt-[22px] flex w-full items-center justify-between">
-        <p className="my-auto self-stretch text-base font-[450] leading-loose tracking-tight text-textDark">
+      <div className="flex w-full items-center justify-end gap-4">
+        <p className="my-auto self-stretch text-xs font-[450] leading-loose tracking-tight text-textDark md:text-base">
           Need to make some changes?
         </p>
 
@@ -28,8 +28,8 @@ export default function ActionsButtons({ domainName }) {
             href={`mailto:support@quikwebsites.com?subject=Markup Request - from ${domainName}`}
           >
             <Button
-              variant="secondary"
-              className="min-h-[40px] rounded-[10px] px-2"
+              variant="lightGreen"
+              className="min-h-[40px] rounded-[10px] px-2 text-xs font-normal"
             >
               <PencilIcon size={14} /> Request Updates
             </Button>

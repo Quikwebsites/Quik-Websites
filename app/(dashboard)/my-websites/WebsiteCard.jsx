@@ -9,11 +9,11 @@ export default function WebsiteCard({ data }) {
     <div className="flex w-[251px] flex-col overflow-hidden rounded-[20px] bg-white p-2.5 shadow-10px">
       <Image
         loading="lazy"
-        src={`/${subscriptionInfo.design}.jpg`}
+        src={`/${subscriptionInfo.design.toLowerCase().split(" ").join("-")}.jpeg`}
         alt={companyInfo.companyName + "Website preview"}
         width={200}
         height={300}
-        className="aspect-[0.82] w-full rounded-xl object-cover shadow-4px-i"
+        className="aspect-[0.82] w-full rounded-xl object-cover object-top shadow-4px-i"
       />
 
       <div className="mt-1.5 flex w-full items-center justify-between self-start pl-2.5 pr-1 capitalize">
