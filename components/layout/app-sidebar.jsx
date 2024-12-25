@@ -38,16 +38,16 @@ const navigationItems = [
 ];
 
 const bulletPoints = [
-  ".com email address",
-  "Google Workspace",
-  "Look More Professional",
-  "Have Brand Consistency",
-  "Manage Customer Queries",
+  "Get found on top online directories",
+  "Improve your local SEO ranking",
+  "Attract more customers effortlessly",
+  "Build trust with a verified presence",
+  "Save time with automated listings",
 ];
 
 export default function AppSidebar() {
   return (
-    <Sidebar className="shadow-10px overflow-auto rounded-b-[10px] border-none">
+    <Sidebar className="overflow-auto rounded-b-[10px] border-none shadow-10px">
       <SidebarHeader className="mx-5 items-center border-b border-[#B7DFCC] pb-[54px] pt-[44px]">
         <Image
           priority

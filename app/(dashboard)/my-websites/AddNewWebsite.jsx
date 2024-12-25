@@ -8,7 +8,7 @@ export default function AddNewWebsite() {
         Add a new site
       </p>
 
-      <Link href="https://quik-websites-4289fb.webflow.io/quik-pricing">
+      <Link href={`${process.env.NEXT_PUBLIC_WEBFLOW_URL}/quik-pricing`}>
         <button className="flex h-[35px] w-[91px] items-center justify-center rounded-xl bg-gray300">
           <PlusIcon size={18} />
         </button>

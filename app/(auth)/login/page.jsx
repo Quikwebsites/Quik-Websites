@@ -166,7 +166,7 @@ export default function LoginPage() {
           </Button>
 
           <Link
-            href="https://quik-websites-4289fb.webflow.io/quik-pricing"
+            href={`${process.env.NEXT_PUBLIC_WEBFLOW_URL}/quik-pricing`}
             className="mt-6 block w-full text-center text-sm text-darkGreen"
           >
             Not registered yet? Create an Account{" "}

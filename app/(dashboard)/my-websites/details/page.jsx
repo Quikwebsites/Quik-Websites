@@ -80,7 +80,7 @@ export default function WebsiteDetailsPage() {
                 {websiteData?.companyInfo.companyName}
               </h2>
               <p className="mt-1.5 text-base tracking-tight text-midGreen">
-                {websiteData?.subscriptionInfo.basicOrPremium} design{" "}
+                {/* {websiteData?.subscriptionInfo.basicOrPremium} design{" "} */}
                 {websiteData?.subscriptionInfo.design}
               </p>
             </div>

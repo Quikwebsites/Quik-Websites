@@ -13,11 +13,15 @@ export default function BackButton() {
   return (
     <Button
       variant="ghost"
-      onClick={() => isChangeEmailPage && router.push("/")}
+      onClick={() =>
+        isChangeEmailPage
+          ? router.push("/")
+          : router.push(process.env.NEXT_PUBLIC_WEBFLOW_URL)
+      }
       className="absolute bottom-0 left-3 md:left-36 md:px-2.5 md:py-1"
     >
       <ChevronLeft size={18} /> Back to{" "}
-      {isChangeEmailPage ? "dashboard" : "website"}
+      {isChangeEmailPage ? "dashboard" : "home"}
     </Button>
   );
 }

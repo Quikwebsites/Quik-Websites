@@ -22,7 +22,8 @@ export default function WebsiteCard({ data }) {
             {companyInfo.companyName}
           </p>
           <p className="text-[10px] leading-5 tracking-tight text-gray600">
-            {subscriptionInfo.basicOrPremium} design {subscriptionInfo.design}
+            {subscriptionInfo.design}
+            {/* {subscriptionInfo.basicOrPremium} design {subscriptionInfo.design} */}
           </p>
         </div>
 

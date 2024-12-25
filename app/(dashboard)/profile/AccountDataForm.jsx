@@ -82,18 +82,41 @@ export function AccountDataForm() {
 
   const fetchUserData = async () => {
     try {
+      let userData = {
+        fullName: "",
+        phoneNumber: "",
+        email: "",
+        // biography: "",
+        receiveNewsletters: false,
+      };
+
       const personalInfoQuerySnap = await getDocs(
         collection(db, `users/${currentUser.email}/personalInfo`),
       );
-      personalInfoQuerySnap.forEach((doc) => {
-        const userData = doc.data();
-        form.reset({
-          fullName: userData?.fullName || "",
-          phoneNumber: userData?.phoneNumber || "",
-          email: userData?.customerEmail || "",
-          // biography: userData?.customerBiography || "",
-          receiveNewsletters: userData?.receiveNewsletters || false,
-        });
+      personalInfoQuerySnap.forEach(async (doc) => {
+        const data = doc.data();
+
+        userData = {
+          ...userData,
+          fullName: data?.fullName || "",
+          email: data?.customerEmail || "",
+          receiveNewsletters: data?.receiveNewsletters || false,
+          phoneNumber: data?.phoneNumber || "",
+        };
+
+        if (!data?.phoneNumber) {
+          const websiteQuerySnap = await getDocs(
+            collection(db, `users/${currentUser.email}/website1`),
+          );
+          websiteQuerySnap.forEach((doc) => {
+            userData = {
+              ...userData,
+              phoneNumber: doc.data()?.companyInfo.companyPhone || "",
+            };
+          });
+        }
+
+        form.reset(userData);
       });
     } catch (error) {
       console.error(error);
