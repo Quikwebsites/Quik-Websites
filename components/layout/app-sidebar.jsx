@@ -42,7 +42,7 @@ const bulletPoints = [
   "Improve your local SEO ranking",
   "Attract more customers effortlessly",
   "Build trust with a verified presence",
-  "Save time with automated listings",
+  "Save time with automated CSV listings",
 ];
 
 export default function AppSidebar() {
