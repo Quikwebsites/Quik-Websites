@@ -31,7 +31,7 @@ export default function AuthLayout({ children }) {
 
         <div className="flex gap-3 text-midGreen md:gap-8">
           <Link
-            href="https://www.quikwebsites.com/terms-of-service"
+            href={`${process.env.NEXT_PUBLIC_WEBFLOW_URL}/privacy-policy`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-textDark"
@@ -40,7 +40,7 @@ export default function AuthLayout({ children }) {
           </Link>
 
           <Link
-            href="https://www.quikwebsites.com/terms-of-service"
+            href={`${process.env.NEXT_PUBLIC_WEBFLOW_URL}/terms-and-conditions`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-textDark"
