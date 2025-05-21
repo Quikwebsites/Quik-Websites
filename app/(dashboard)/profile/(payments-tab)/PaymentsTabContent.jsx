@@ -57,7 +57,7 @@ export default function PaymentsTabContent() {
             id: item.id,
             transaction: item.description,
             amount: item.amount / 100,
-            date: format(Date(item.created), "P"),
+            date: format(new Date(item.created * 1000), "P"),
             status: item.status,
             account: item.payment_method_details?.card
               ? {
