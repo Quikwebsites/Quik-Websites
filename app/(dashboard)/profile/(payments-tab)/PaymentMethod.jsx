@@ -63,7 +63,7 @@ function Method({ data, isActive, isChecked, setLoadingPaymentMethods }) {
   const setActiveCard = async () => {
     setLoadingPaymentMethods(true);
     try {
-      await fetch(
+      const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/set-default-card`,
         {
           method: "POST",
@@ -74,6 +74,11 @@ function Method({ data, isActive, isChecked, setLoadingPaymentMethods }) {
           }),
         },
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       window.location.reload();
     } catch (error) {
       console.error(error);
@@ -92,11 +97,11 @@ function Method({ data, isActive, isChecked, setLoadingPaymentMethods }) {
             <RadioGroupItem value={data.id} id={data.id} />
 
             <div className="-mt-1">
-              <p className="text-gray900">**** {data.card.last4}</p>
+              <p className="text-gray900">**** {data?.card?.last4}</p>
 
               <div className="flex capitalize text-[#677489]">
                 <p className="max-w-[100px] truncate">
-                  {data.card.display_brand.split("_").join(" ")}
+                  {data?.card?.display_brand?.split("_").join(" ")}
                 </p>
                 {/* <Dot color="#677489" /> */}
                 {/* <p>Edit</p> */}
@@ -106,8 +111,8 @@ function Method({ data, isActive, isChecked, setLoadingPaymentMethods }) {
         </div>
 
         <Image
-          src={`/icons/${data.card.display_brand}.svg`}
-          alt={data.card.display_brand + "logo"}
+          src={`/icons/${data?.card?.display_brand}.svg`}
+          alt={data?.card?.display_brand + "logo"}
           width={40}
           height={40}
           onError={(e) => (e.target.src = "/icons/ion_card-outline.svg")}

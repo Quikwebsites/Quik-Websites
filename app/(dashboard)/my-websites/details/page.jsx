@@ -35,7 +35,7 @@ export default function WebsiteDetailsPage() {
           currWebsiteData = doc.data();
         });
 
-        if (currWebsiteData.domainInfo.domainName === id) {
+        if (currWebsiteData?.domainInfo?.domainName === id) {
           setWebsiteData(currWebsiteData);
           break;
         }
@@ -68,8 +68,8 @@ export default function WebsiteDetailsPage() {
               loading="lazy"
               width={600}
               height={800}
-              src={`/${websiteData?.subscriptionInfo.design.toLowerCase().split(" ").join("-")}.jpeg`}
-              alt={websiteData?.companyInfo.companyName + "Website design"}
+              src={`/${websiteData?.subscriptionInfo?.design?.toLowerCase().split(" ").join("-")}.jpeg`}
+              alt={websiteData?.companyInfo?.companyName + "Website design"}
               className="h-max object-contain object-top"
             />
           </div>
@@ -77,17 +77,17 @@ export default function WebsiteDetailsPage() {
           <div className="flex w-full flex-col justify-between rounded-2xl bg-white p-6 capitalize shadow-10px">
             <div>
               <h2 className="text-2xl font-medium tracking-tight text-darkGreen">
-                {websiteData?.companyInfo.companyName}
+                {websiteData?.companyInfo?.companyName}
               </h2>
               <p className="mt-1.5 text-base tracking-tight text-midGreen">
-                {/* {websiteData?.subscriptionInfo.basicOrPremium} design{" "} */}
-                {websiteData?.subscriptionInfo.design}
+                {/* {websiteData?.subscriptionInfo?.basicOrPremium} design{" "} */}
+                {websiteData?.subscriptionInfo?.design}
               </p>
             </div>
 
             <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
               <a
-                href={"https://" + websiteData?.domainInfo.domainName}
+                href={"https://" + websiteData?.domainInfo?.domainName}
                 target="_blank"
                 rel="noopener noreferrer"
               >

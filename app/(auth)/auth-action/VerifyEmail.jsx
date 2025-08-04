@@ -27,7 +27,7 @@ export default function VerifyEmail({ mode, oobCode }) {
     try {
       await verifyBeforeUpdateEmail(
         auth.currentUser,
-        emailReset.newEmail.email,
+        emailReset?.newEmail?.email,
       );
 
       setLoading(false);
@@ -87,7 +87,7 @@ export default function VerifyEmail({ mode, oobCode }) {
     if (
       !loadingState &&
       mode === "verifyEmail" &&
-      !emailReset.oldEmail.isVerified
+      !emailReset?.oldEmail?.isVerified
     ) {
       handleOldEmailVerification();
     }
@@ -95,7 +95,7 @@ export default function VerifyEmail({ mode, oobCode }) {
     if (
       !loadingState &&
       mode === "verifyAndChangeEmail" &&
-      !emailReset.newEmail.isVerified
+      !emailReset?.newEmail?.isVerified
     ) {
       handleNewEmailVerification();
     }
@@ -104,7 +104,7 @@ export default function VerifyEmail({ mode, oobCode }) {
   if (loading || loadingState) return <LoadingSpinner />;
 
   return (
-    <div className="shadow-10px flex w-full flex-col items-center justify-center rounded-2xl bg-white p-6 px-6 py-12 md:w-[460px]">
+    <div className="flex w-full flex-col items-center justify-center rounded-2xl bg-white p-6 px-6 py-12 shadow-10px md:w-[460px]">
       <Image
         width={48}
         height={48}
@@ -120,7 +120,7 @@ export default function VerifyEmail({ mode, oobCode }) {
       </p>
 
       <div className="mt-8 flex h-[50px] w-full flex-col items-center justify-center rounded-2xl bg-[#EBEBEB] text-center text-sm font-normal tracking-tight text-gray60">
-        {emailReset.newEmail.email}
+        {emailReset?.newEmail?.email}
       </div>
     </div>
   );

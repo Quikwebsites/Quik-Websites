@@ -111,7 +111,7 @@ export function AccountDataForm() {
           websiteQuerySnap.forEach((doc) => {
             userData = {
               ...userData,
-              phoneNumber: doc.data()?.companyInfo.companyPhone || "",
+              phoneNumber: doc.data()?.companyInfo?.companyPhone || "",
             };
           });
         }

@@ -140,6 +140,11 @@ function AddNewCardForm() {
           body: JSON.stringify({ customerId: currentUser?.customerId }),
         },
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const { client_secret } = await response.json();
 
       if (!client_secret)
@@ -158,7 +163,7 @@ function AddNewCardForm() {
 
       // set as default card if checkbox is checked
       if (defaultCard) {
-        await fetch(
+        const defaultResponse = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/set-default-card`,
           {
             method: "POST",
@@ -169,6 +174,10 @@ function AddNewCardForm() {
             }),
           },
         );
+
+        if (!defaultResponse.ok) {
+          throw new Error(`HTTP error! status: ${defaultResponse.status}`);
+        }
       }
 
       setError(null);

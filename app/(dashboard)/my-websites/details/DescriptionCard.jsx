@@ -3,7 +3,7 @@ import { Check, MoveRight } from "lucide-react";
 import ActionsButtons from "./ActionsButtons";
 
 export function DescriptionCard({ websiteData }) {
-  const { domainInfo, businessDetails } = websiteData;
+  const { domainInfo, businessDetails } = websiteData || {};
 
   return (
     <div className="flex flex-col gap-6 rounded-2xl bg-white p-6 shadow-10px">
@@ -13,13 +13,13 @@ export function DescriptionCard({ websiteData }) {
         </p>
 
         <p className="mt-3 h-[160px] overflow-auto rounded-lg border border-gray20 px-5 pt-7 text-sm font-[450] leading-6 tracking-tight text-textDark">
-          {businessDetails.mission}
+          {businessDetails?.mission}
           <br />
-          {businessDetails.targetAudience}
+          {businessDetails?.targetAudience}
           <br />
-          {businessDetails.providingServices}
+          {businessDetails?.providingServices}
           <br />
-          {businessDetails.primaryAction}
+          {businessDetails?.primaryAction}
         </p>
 
         {/* <ActionsButtons domainName={domainInfo?.domainName} /> */}
@@ -33,7 +33,7 @@ export function DescriptionCard({ websiteData }) {
         <div className="mt-3 flex w-full justify-between rounded-lg bg-gray10 px-5 py-2">
           <div className="flex items-center gap-2.5">
             <p className="my-auto text-base font-[450] leading-none tracking-tight text-textDark">
-              {domainInfo.domainName}
+              {domainInfo?.domainName}
             </p>
             <Check
               size={18}
@@ -45,7 +45,7 @@ export function DescriptionCard({ websiteData }) {
           </div>
 
           <a
-            href={"https://" + domainInfo.domainName}
+            href={"https://" + domainInfo?.domainName}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -72,7 +72,7 @@ export function DescriptionCard({ websiteData }) {
         </div>
 
         <a
-          href={`mailto:support@quikwebsites.com?subject=Delist ${domainInfo.domainName}`}
+          href={`mailto:support@quikwebsites.com?subject=Delist ${domainInfo?.domainName}`}
           className="mt-3 text-xs font-normal leading-loose tracking-tight text-destructive50 underline"
         >
           De-list website

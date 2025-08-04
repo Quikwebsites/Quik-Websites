@@ -30,6 +30,11 @@ export default function PaymentsTabContent() {
         process.env.NEXT_PUBLIC_BASE_URL +
           `/api/stripe/payment-methods?customerId=${currentUser.customerId}`,
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
       setPaymentMethodsData(data);
     } catch (error) {
@@ -50,6 +55,11 @@ export default function PaymentsTabContent() {
         process.env.NEXT_PUBLIC_BASE_URL +
           `/api/stripe/payment-history?customerId=${currentUser.customerId}`,
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       const formattedPaymentHistory = data

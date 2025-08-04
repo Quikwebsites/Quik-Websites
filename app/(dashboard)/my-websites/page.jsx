@@ -54,7 +54,10 @@ export default function MyWebsitesPage() {
         <div className="flex flex-wrap justify-center gap-[14px] pt-8 animate-in md:justify-start">
           {websitesData &&
             websitesData.map((website) => (
-              <WebsiteCard key={website.domainInfo.domainName} data={website} />
+              <WebsiteCard
+                key={website?.domainInfo?.domainName}
+                data={website}
+              />
             ))}
 
           <AddNewWebsite />
